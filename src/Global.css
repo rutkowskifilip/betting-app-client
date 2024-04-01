@@ -3,7 +3,7 @@
   --primary200: #0e2a99;
   --primary300: #000d40;
   --white: #fff;
-  --accent100: #f3ba4b;
+  --accent: #f3ba4b;
   --success: #00ba5c;
   --error: #fa0202;
 }
@@ -146,6 +146,8 @@ body {
   color: var(--white);
   background-color: var(--primary100);
   line-height: 1;
+
+  overflow-x: hidden;
 }
 .flex-center {
   display: flex;
@@ -169,4 +171,16 @@ body {
 }
 h1 {
   font-size: 2em;
+}
+.img-flag {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0;
+  border: 2px solid var(--accent);
+}
+.prev-button,
+.next-button {
+  background-color: var(--primary100);
+  color: var(--white);
 }

@@ -24,7 +24,7 @@
   color: var(--accent100);
 }
 .text-input:focus {
-  border: 3px solid var(--accent100);
+  border: 3px solid var(--accent);
 }
 .text-input:first-of-type {
   margin-bottom: 5px;
