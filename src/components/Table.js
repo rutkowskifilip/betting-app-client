@@ -1,28 +1,39 @@
 import { TableElement } from "./TableElement";
 import "./css/Table.css";
 import { FilledInput } from "@mui/material";
+import { useEffect, useState } from "react";
 export const Table = ({ table }) => {
-  const players = [
-    { name: "Filip", points: 20, perfectBets: 10, bets: 13 },
-    { name: "Jan", points: 21, perfectBets: 11, bets: 13 },
-    { name: "Paweł", points: 20, perfectBets: 10, bets: 13 },
-    { name: "Grzes", points: 22, perfectBets: 2, bets: 13 },
-    { name: "Kok", points: 20, perfectBets: 11, bets: 13 },
-    { name: "aaa", points: 32, perfectBets: 10, bets: 13 },
-    { name: "Filwihdiewdip", points: 15, perfectBets: 2, bets: 13 },
-    { name: "cccc", points: 4, perfectBets: 10, bets: 13 },
-  ];
-  const sortedPlayers = players.slice().sort((a, b) => {
-    // Compare by points
-    if (a.points !== b.points) {
-      return b.points - a.points; // Sort by points in descending order
-    }
-    // If points are equal, compare by perfect bets
-    return b.perfectBets - a.perfectBets; // Sort by perfect bets in descending order
-  });
+  const [players, setPlayers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/players.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        const sorted = jsonData.slice().sort((a, b) => {
+          // Compare by points
+          if (a.points !== b.points) {
+            return b.points - a.points; // Sort by points in descending order
+          }
+          // If points are equal, compare by perfect bets
+          return b.perfectBets - a.perfectBets; // Sort by perfect bets in descending order
+        });
+        setPlayers(sorted);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  console.log(sortedPlayers);
-  return (
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
     <div className="flex-center" style={{ paddingTop: "100px" }}>
       <div className="table">
         <div className="table-element">
@@ -32,7 +43,7 @@ export const Table = ({ table }) => {
           <div className="table-cell flex-center">Perfect Bets</div>
           <div className="table-cell flex-center">Good Bets</div>
         </div>
-        {sortedPlayers.map((player, index) => (
+        {players.map((player, index) => (
           <TableElement key={index} position={index} player={player} />
         ))}
       </div>

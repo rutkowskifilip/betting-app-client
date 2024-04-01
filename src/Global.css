@@ -184,4 +184,6 @@ h1 {
 .next-button {
   background-color: var(--primary100);
   color: var(--white);
+  padding: 0;
+  margin: 0;
 }
