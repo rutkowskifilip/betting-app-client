@@ -1,0 +1,8 @@
+[
+  { "group": "A", "teams": ["Germany", "Scotland", "Hungary", "Switzerland"] },
+  { "group": "B", "teams": ["Spain", "Croatia", "Italy", "Albania"] },
+  { "group": "C", "teams": ["Slovenia", "Denmark", "Serbia", "England"] },
+  { "group": "D", "teams": ["Netherlands", "France", "Poland", "Austria"] },
+  { "group": "E", "teams": ["Ukraine", "Slovakia", "Belgium", "Romania"] },
+  { "group": "F", "teams": ["Portugal", "Czechia", "Georgia", "Turkiye"] }
+]

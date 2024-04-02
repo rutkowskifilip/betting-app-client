@@ -1,0 +1,68 @@
+.groups-container {
+  width: 100%;
+  flex-direction: column;
+  padding-top: 100px;
+}
+.group-view {
+  width: 25%;
+  min-width: 320px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-element,
+.group-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: var(--primary200);
+  border-radius: 25px;
+  margin-bottom: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease-in-out;
+}
+.group-element:hover {
+  transform: scale(1.02);
+}
+.group-name {
+  background-color: var(--primary300);
+}
+.floating {
+  width: 25%;
+  position: absolute;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.group-element.drop-zone {
+  background-color: var(--primary100);
+  transition-property: height padding;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  overflow: hidden;
+}
+
+.group-element.drop-zone.hidden {
+  height: 0px;
+  padding: 0px;
+}
+
+.floating {
+  position: absolute;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.group-position {
+  width: 50px;
+}
+.group-flag {
+  width: 50px;
+}
+.group-team {
+  width: calc(100% - 100px);
+}
+.disabled {
+  transform: scale(0.8); /* Add hover effect */
+  opacity: 0.5;
+}

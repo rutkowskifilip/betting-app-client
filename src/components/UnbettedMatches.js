@@ -11,7 +11,7 @@ export const UnbettedMatches = (params) => {
   useEffect(() => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
-
+    const hour = today.getHours();
     const fetchData = async () => {
       try {
         const response = await fetch("/matches.json");
@@ -21,7 +21,10 @@ export const UnbettedMatches = (params) => {
         const jsonData = await response.json();
         setMatches(
           jsonData.filter(
-            (match) => match.date >= todayDateString && match.bet === ""
+            (match) =>
+              match.date >= todayDateString &&
+              match.bet === "" &&
+              parseInt(match.time.slice(0, 2)) > hour
           )
         );
         setCurrentMatch([0]);
@@ -32,12 +35,10 @@ export const UnbettedMatches = (params) => {
     };
 
     fetchData();
-    console.log(matches);
   }, []);
   const goToNextMatch = () => {
     setCurrentMatch((currentMatch + 1) % matches.length);
   };
-
   const goToPrevMatch = () => {
     setCurrentMatch((currentMatch - 1 + matches.length) % matches.length);
   };

@@ -4,16 +4,16 @@ export const BetCardView = ({ match, enabled }) => {
   const [scoreTeamOne, setScoreTeamOne] = useState();
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
   const [isButtonEnabled, setButtonEnabled] = useState(false);
-  const [isLoading, setIsLoadind] = useState(true);
-  const flagOne = "/flags/" + "Poland" + ".png";
-  const flagTwo = "/flags/" + "France" + ".png";
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (match) {
-      setIsLoadind(false);
+      setIsLoading(false);
     }
   }, [match]);
   const styles = {
     opacity: enabled ? 1 : 0.5,
+    transform: enabled ? "" : "scale(0.8)",
   };
   const handleInputOneChange = (event) => {
     const value = event.target.value;
@@ -35,7 +35,7 @@ export const BetCardView = ({ match, enabled }) => {
     <div className="card-view flex-center" style={styles}>
       <p>Group {match.group}</p>
       <div className="bet-area flex-center">
-        <img src={flagOne} className="img-flag" />
+        <img src={`/flags/${match.teamOne}.png`} className="img-flag" />
         <p>{match.teamOne.slice(0, 3).toUpperCase()}</p>
 
         <input
@@ -55,7 +55,7 @@ export const BetCardView = ({ match, enabled }) => {
         />
 
         <p>{match.teamTwo.slice(0, 3).toUpperCase()}</p>
-        <img src={flagTwo} className="img-flag" />
+        <img src={`/flags/${match.teamTwo}.png`} className="img-flag" />
       </div>
       <p>{match.time}</p>
       <p>

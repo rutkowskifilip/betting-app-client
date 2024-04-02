@@ -3,11 +3,12 @@ import { AllMatches } from "../components/AllMatches";
 import { Menu } from "../components/Menu";
 import { Table } from "../components/Table";
 import { useState } from "react";
+import { Groups } from "../components/Groups";
 
 export const Home = (params) => {
-  const [view, setView] = useState();
+  const [view, setView] = useState(<Groups />);
   const changeView = (id) => {
-    if (id == "unbetted") {
+    if (id === "unbetted") {
       setView(<UnbettedMatches />);
     } else if (id === "table") {
       setView(<Table />);

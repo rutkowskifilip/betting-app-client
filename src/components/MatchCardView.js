@@ -5,8 +5,8 @@ export const MatchCardView = ({ match }) => {
   const group = match.group;
   const teamOne = match.teamOne;
   const teamTwo = match.teamTwo;
-  const flagOne = "/flags/" + "Poland" + ".png";
-  const flagTwo = "/flags/" + "France" + ".png";
+  const flagOne = "/flags/" + teamOne + ".png";
+  const flagTwo = "/flags/" + teamTwo + ".png";
   const time = match.time;
   const date = match.date;
   const city = match.city;
