@@ -15,7 +15,7 @@ export const Groups = () => {
   const today = new Date();
   const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
   const hour = today.getHours();
-  const startDate = new Date("2024-05-14");
+  const startDate = "2024-06-29";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +31,13 @@ export const Groups = () => {
         console.error("Error fetching data:", error);
       }
     };
-    if (today > startDate || (today == startDate && hour >= "21")) {
+
+    if (
+      todayDateString < startDate ||
+      (todayDateString === startDate && hour < 21)
+    ) {
+      setDisabled(false);
+    } else {
       setDisabled(true);
     }
     fetchData();
