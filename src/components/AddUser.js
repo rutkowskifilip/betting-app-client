@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
-
+import "../Global.css";
 export const AddUser = (params) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -24,8 +24,6 @@ export const AddUser = (params) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Here you can handle the form submission, like sending the username and password to a server for authentication
-
     try {
       const response = await api.post("/user/add", {
         username,
@@ -34,15 +32,17 @@ export const AddUser = (params) => {
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Network response was not ok");
       }
-      console.log("Response data:", response.data);
+      alert(response.data);
+      setEmail("");
+      setUsername("");
     } catch (error) {
       console.error("There was a problem with your Axios request:", error);
     }
   };
   return (
     <div className="flex-center page-add-user">
-      <form action="/" method="post" className="form-add-user flex-center">
-        <div className="div-text-inputs flex-center">
+      <div className="form-add-user flex-center">
+        <div className="div-text-inputs">
           <input
             type="text"
             id="username"
@@ -71,7 +71,7 @@ export const AddUser = (params) => {
         <button type="submit" className="button-submit" onClick={handleSubmit}>
           Add User
         </button>
-      </form>
+      </div>
     </div>
   );
 };

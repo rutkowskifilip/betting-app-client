@@ -3,6 +3,7 @@ export const Menu = ({ onItemClick }) => {
   const handleItemClick = (event) => {
     onItemClick(event.target.id);
   };
+  const admin = true;
   return (
     <div className="menu">
       <div className="menu-group">
@@ -41,6 +42,26 @@ export const Menu = ({ onItemClick }) => {
         >
           Rules
         </div>
+        {admin ? (
+          <>
+            <div
+              id="addMatch"
+              className="menu-elem flex-center"
+              onClick={handleItemClick}
+            >
+              Add Match
+            </div>
+            <div
+              id="addUser"
+              className="menu-elem flex-center"
+              onClick={handleItemClick}
+            >
+              Add User
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <div
         id="logout"

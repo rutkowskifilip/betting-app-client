@@ -9,7 +9,7 @@ import { SetPassword } from "../components/SetPassword";
 import { AddMatch } from "../components/AddMatch";
 
 export const Home = (params) => {
-  const [view, setView] = useState(<AddMatch />);
+  const [view, setView] = useState("");
   const changeView = (id) => {
     if (id === "unbet") {
       setView(<UnbetMatches />);
@@ -21,6 +21,10 @@ export const Home = (params) => {
       setView("");
     } else if (id === "groups") {
       setView(<Groups />);
+    } else if (id === "addMatch") {
+      setView(<AddMatch />);
+    } else if (id === "addUser") {
+      setView(<AddUser />);
     } else {
       setView("");
     }
