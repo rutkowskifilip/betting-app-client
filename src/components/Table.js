@@ -1,35 +1,80 @@
 import { TableElement } from "./TableElement";
 import "./css/Table.css";
-import { FilledInput } from "@mui/material";
-import { useEffect, useState } from "react";
-export const Table = ({ table }) => {
+import { useEffect, useState, useMemo } from "react";
+import api from "../axios-instance";
+
+export const Table = () => {
   const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/players.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+        const response = await api.get("/user/table");
+        if (response.status === 200) {
+          setPlayers(response.data);
+          setIsLoading(false);
         }
-        const jsonData = await response.json();
-        const sorted = jsonData.slice().sort((a, b) => {
-          // Compare by points
-          if (a.points !== b.points) {
-            return b.points - a.points; // Sort by points in descending order
-          }
-          // If points are equal, compare by perfect bets
-          return b.perfectBets - a.perfectBets; // Sort by perfect bets in descending order
-        });
-        setPlayers(sorted);
-        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
+
+  const calculatePoints = (betScore, matchScore) => {
+    if (betScore === matchScore) return 5;
+
+    const [betTeam1, betTeam2] = betScore.split(":").map(Number);
+    const [matchTeam1, matchTeam2] = matchScore.split(":").map(Number);
+
+    if (
+      (betTeam1 > betTeam2 && matchTeam1 > matchTeam2) ||
+      (betTeam1 < betTeam2 && matchTeam1 < matchTeam2) ||
+      (betTeam1 === betTeam2 && matchTeam1 === matchTeam2)
+    ) {
+      return 3;
+    }
+
+    return 0;
+  };
+
+  const createPlayersStats = (data) => {
+    const playersStats = {};
+
+    data.forEach((e) => {
+      if (!playersStats[e.username]) {
+        playersStats[e.username] = {
+          username: e.username,
+          points: 0,
+          perfectBets: 0,
+          goodBets: 0,
+        };
+      }
+
+      if (e.betScore && e.score) {
+        const points = calculatePoints(e.betScore, e.score);
+        playersStats[e.username].points += points;
+        if (points === 5) {
+          playersStats[e.username].perfectBets += 1;
+        } else if (points === 3) {
+          playersStats[e.username].goodBets += 1;
+        }
+      }
+    });
+
+    const sortedPlayersStats = Object.values(playersStats).sort((a, b) => {
+      if (b.points !== a.points) {
+        return b.points - a.points; // Sort by points in descending order
+      } else {
+        return b.perfectBets - a.perfectBets; // Sort by perfectBets in descending order if points are the same
+      }
+    });
+
+    return sortedPlayersStats;
+  };
+
+  const playersTable = useMemo(() => createPlayersStats(players), [players]);
 
   return isLoading ? (
     <p>Loading...</p>
@@ -43,7 +88,7 @@ export const Table = ({ table }) => {
           <div className="table-cell flex-center">Perfect Bets</div>
           <div className="table-cell flex-center">Good Bets</div>
         </div>
-        {players.map((player, index) => (
+        {playersTable.map((player, index) => (
           <TableElement key={index} position={index} player={player} />
         ))}
       </div>

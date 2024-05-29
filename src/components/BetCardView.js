@@ -1,6 +1,8 @@
+import { SettingsOverscanRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import api from "../axios-instance";
 import "./css/MatchCardView.css";
-export const BetCardView = ({ match, enabled }) => {
+export const BetCardView = ({ match, enabled, setSaved }) => {
   const [scoreTeamOne, setScoreTeamOne] = useState();
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
   const [isButtonEnabled, setButtonEnabled] = useState(false);
@@ -18,27 +20,48 @@ export const BetCardView = ({ match, enabled }) => {
   const handleInputOneChange = (event) => {
     const value = event.target.value;
     setScoreTeamOne(value);
-    setButtonEnabled(value >= 0 && scoreTeamTwo >= 0);
+    setButtonEnabled(value >= 0 && scoreTeamTwo >= 0 && scoreTeamTwo !== "");
   };
   const handleInputTwoChange = (event) => {
     const value = event.target.value;
     setScoreTeamTwo(value);
-    setButtonEnabled(value >= 0 && scoreTeamOne >= 0);
+    setButtonEnabled(value >= 0 && scoreTeamOne >= 0 && scoreTeamOne !== "");
     console.log(scoreTeamOne);
   };
-  const handleButtonClick = () => {
-    console.log(scoreTeamOne, scoreTeamTwo);
+  const handleButtonClick = async () => {
+    const userId = 1;
+    const matchId = match.id;
+    const score = scoreTeamOne + ":" + scoreTeamTwo;
+    try {
+      const response = await api.post("/bet/add", {
+        userId,
+        matchId,
+        score,
+      });
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error("Network response was not ok");
+      }
+      console.log(response);
+      alert(response.data);
+      setScoreTeamOne("");
+      setScoreTeamTwo("");
+      setButtonEnabled(false);
+      setSaved(true);
+    } catch (error) {
+      alert("There was a problem", error);
+    }
   };
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="card-view flex-center" style={styles}>
-      <p>Group {match.group}</p>
+      <p>{match.type}</p>
       <div className="bet-area flex-center">
         <img src={`/flags/${match.teamOne}.png`} className="img-flag" />
         <p>{match.teamOne.slice(0, 3).toUpperCase()}</p>
 
         <input
+          value={scoreTeamOne}
           type="number"
           name="teamOne"
           id="teamOne"
@@ -47,6 +70,7 @@ export const BetCardView = ({ match, enabled }) => {
         />
         <p>:</p>
         <input
+          value={scoreTeamTwo}
           type="number"
           name="teamTwo"
           id="teamTwo"
@@ -57,9 +81,9 @@ export const BetCardView = ({ match, enabled }) => {
         <p>{match.teamTwo.slice(0, 3).toUpperCase()}</p>
         <img src={`/flags/${match.teamTwo}.png`} className="img-flag" />
       </div>
-      <p>{match.time}</p>
+      <p>{match.time}:00</p>
       <p>
-        {match.date} {match.city}
+        {match.date} {match.location}
       </p>
       {enabled ? (
         <button

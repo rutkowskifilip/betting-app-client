@@ -1,41 +1,45 @@
 import { useEffect, useState } from "react";
 import { BetCardView } from "./BetCardView";
 import { IconButton } from "@mui/material";
-import { NavigateBefore, NavigateNext } from "@mui/icons-material";
-export const UnbettedMatches = (params) => {
+import {
+  NavigateBefore,
+  NavigateNext,
+  SettingsOverscanRounded,
+} from "@mui/icons-material";
+import api from "../axios-instance";
+export const UnbetMatches = (params) => {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [prevMatch, setPrevMatch] = useState();
   const [nextMatch, setNextMatch] = useState();
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [saved, setSaved] = useState(false);
+  const [info, setInfo] = useState("Loading...");
   useEffect(() => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
     const hour = today.getHours();
     const fetchData = async () => {
-      try {
-        const response = await fetch("/matches.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const jsonData = await response.json();
+      const response = await api.get("/match/unbet/1");
+      if (response.status === 200) {
         setMatches(
-          jsonData.filter(
+          response.data.filter(
             (match) =>
-              match.date >= todayDateString &&
-              match.bet === "" &&
-              parseInt(match.time.slice(0, 2)) > hour
+              match.date > todayDateString ||
+              (match.date === todayDateString && parseInt(match.time) > hour)
           )
         );
+
         setCurrentMatch([0]);
         setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      } else if (response.status === 201) {
+        setInfo("No unbet matches");
       }
     };
 
     fetchData();
-  }, []);
+  }, [saved]);
+
   const goToNextMatch = () => {
     setCurrentMatch((currentMatch + 1) % matches.length);
   };
@@ -69,24 +73,28 @@ export const UnbettedMatches = (params) => {
   return (
     <div className="flex-center" style={styles}>
       {isLoading ? (
-        <p>Loading...</p> // Display loading message while data is being fetched
+        <p>{info}</p>
       ) : (
         <>
           <IconButton
             onClick={goToPrevMatch}
-            className="prev-button"
+            className="button-prev"
             style={{ padding: "0" }}
           >
             <NavigateBefore fontSize="large" />
           </IconButton>
           {window.innerWidth > 1200 ? prevMatch : ""}
 
-          <BetCardView match={matches[currentMatch]} enabled={true} />
+          <BetCardView
+            match={matches[currentMatch]}
+            enabled={true}
+            setSaved={setSaved}
+          />
 
           {window.innerWidth > 1200 ? nextMatch : ""}
           <IconButton
             onClick={goToNextMatch}
-            className="next-button"
+            className="button-next"
             style={{ padding: "0" }}
           >
             <NavigateNext fontSize="large" />

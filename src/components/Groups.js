@@ -78,7 +78,7 @@ export const Groups = () => {
         <>
           <IconButton
             onClick={goToPrevGroup}
-            className="prev-button"
+            className="button-prev"
             style={{ padding: "0" }}
           >
             <NavigateBefore fontSize="large" />
@@ -94,7 +94,7 @@ export const Groups = () => {
           {window.innerWidth > 1200 ? nextGroup : ""}
           <IconButton
             onClick={goToNextGroup}
-            className="next-button"
+            className="button-next"
             style={{ padding: "0" }}
           >
             <NavigateNext fontSize="large" />

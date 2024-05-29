@@ -7,11 +7,11 @@ export const Menu = ({ onItemClick }) => {
     <div className="menu">
       <div className="menu-group">
         <div
-          id="unbetted"
+          id="unbet"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Unbetted Matches
+          Unbet Matches
         </div>
         <div
           id="table"
@@ -26,6 +26,13 @@ export const Menu = ({ onItemClick }) => {
           onClick={handleItemClick}
         >
           All Matches
+        </div>
+        <div
+          id="groups"
+          className="menu-elem flex-center"
+          onClick={handleItemClick}
+        >
+          Groups
         </div>
         <div
           id="rules"

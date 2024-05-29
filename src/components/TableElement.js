@@ -20,10 +20,10 @@ export const TableElement = ({ position, player }) => {
           {position + 1}
         </div>
       </div>
-      <div className="table-cell  flex-center">{player.name}</div>
+      <div className="table-cell  flex-center">{player.username}</div>
       <div className="table-cell  flex-center">{player.points}</div>
       <div className="table-cell  flex-center">{player.perfectBets}</div>
-      <div className="table-cell  flex-center">{player.bets}</div>
+      <div className="table-cell  flex-center">{player.goodBets}</div>
     </div>
   );
 };

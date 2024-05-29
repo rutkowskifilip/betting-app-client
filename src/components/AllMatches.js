@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
+import api from "../axios-instance";
 import { MatchCardView } from "./MatchCardView";
 
-export const AllMatches = (params) => {
+export const AllMatches = () => {
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/matches.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+        const response = await api.get(`/match/all/${1}`);
+        if (response.status === 200) {
+          setMatches(response.data);
+          setIsLoading(false);
         }
-        const jsonData = await response.json();
-        setMatches(jsonData);
-        setIsLoading(false);
-        console.log(matches);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -27,6 +26,7 @@ export const AllMatches = (params) => {
     flexDirection: "row",
     flexWrap: "wrap",
   };
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
