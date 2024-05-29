@@ -1,8 +1,9 @@
-.groups-container {
-  width: 100%;
+.page-groups {
   flex-direction: column;
-  padding-top: 100px;
+  justify-content: space-evenly;
+  text-align: center;
 }
+
 .group-view {
   width: 25%;
   min-width: 320px;
@@ -65,4 +66,14 @@
 .disabled {
   transform: scale(0.8); /* Add hover effect */
   opacity: 0.5;
+}
+.div-info {
+  width: 100%;
+  height: 200px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  top: calc(50vh - 100px);
+  z-index: 10;
+  font-size: 2.5em;
 }

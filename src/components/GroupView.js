@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GroupElement } from "./GroupElement";
 
-export const GroupView = ({ teams, group, enabled }) => {
+export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
   const [orderedTeams, setOrderedTeams] = useState([]);
   const [dragged, setDragged] = useState(null);
   const [mouse, setMouse] = useState([0, 0]);
@@ -12,8 +12,11 @@ export const GroupView = ({ teams, group, enabled }) => {
     if (window.innerWidth < 800) {
       setIsMobile(true);
     }
-    console.log(window.innerWidth, isMobile);
   }, []);
+  useEffect(() => {
+    console.log(orderedTeams);
+    onOrderChange(group, orderedTeams);
+  }, [dragged]);
   useEffect(() => {
     if (dragged !== null) {
       const elements = Array.from(document.getElementsByClassName("drop-zone"));
@@ -46,7 +49,7 @@ export const GroupView = ({ teams, group, enabled }) => {
         e.preventDefault();
         setDragged(null);
         setOrderedTeams((orderedTeams) =>
-          reorderList([...orderedTeams], dragged, dropZone)
+          reorderList(orderedTeams, dragged, dropZone)
         );
       }
     };
@@ -60,6 +63,18 @@ export const GroupView = ({ teams, group, enabled }) => {
     else if (start > end) return _reorderListBackward([...l], start, end);
     return l;
   };
+  // const reorderList = (l, start, end) => {
+  //   const newList = [...l];
+  //   if (start > end) {
+  //     const item = newList.splice(start, 1)[0]; // Remove the dragged item from the list
+  //     newList.splice(end, 0, item); // Insert the dragged item at the new position
+  //     //  }else{
+  //     //    const item = newList.splice(start, 1)[0]; // Remove the dragged item from the list
+  //     //    newList.splice(end, 0, item); // Insert the dragged item at the new position
+  //   }
+
+  //   return newList;
+  // };
   const _reorderListForward = (l, start, end) => {
     const temp = l[start];
     for (let i = start; i < end; i++) {
@@ -90,7 +105,11 @@ export const GroupView = ({ teams, group, enabled }) => {
             top: `${mouse[1]}px`,
           }}
         >
-          <GroupElement team={orderedTeams[dragged]} index={dragged} />
+          <GroupElement
+            key={dragged}
+            team={orderedTeams[dragged]}
+            index={dragged}
+          />
         </div>
       )}
       <div className="group-view">
