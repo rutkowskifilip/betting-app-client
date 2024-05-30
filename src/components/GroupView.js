@@ -99,17 +99,14 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
     <>
       {dragged !== null && (
         <div
+          key={orderedTeams[dragged] + dragged}
           className="floating group-element"
           style={{
             // left: `(${mouse[0]}px`,
             top: `${mouse[1]}px`,
           }}
         >
-          <GroupElement
-            key={dragged}
-            team={orderedTeams[dragged]}
-            index={dragged}
-          />
+          <GroupElement team={orderedTeams[dragged]} index={dragged} />
         </div>
       )}
       <div className="group-view">

@@ -4,6 +4,7 @@ import api from "../axios-instance";
 export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
   const [type, setType] = useState("Group A");
+  const [weight, setWeight] = useState(1);
   const [teamOne, setTeamOne] = useState("Germany");
   const [teamTwo, setTeamTwo] = useState("Scotland");
   const [flagOne, setFlagOne] = useState("/flags/Germany.png");
@@ -29,6 +30,11 @@ export const AddMatch = (params) => {
   }, []);
   const handleTypeChange = (e) => {
     setType(e.target.value);
+    if (e.target.value.charAt(0) === "G") {
+      setWeight(1);
+    } else {
+      setWeight(2);
+    }
   };
   const handleTeamOneChange = (e) => {
     setTeamOne(e.target.value);
@@ -53,6 +59,7 @@ export const AddMatch = (params) => {
     try {
       const response = await api.post("/match/add", {
         type,
+        weight,
         teamOne,
         teamTwo,
         location,

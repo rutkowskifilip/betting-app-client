@@ -15,18 +15,23 @@ export const UnbetMatches = (params) => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
     const hour = today.getHours();
-
+    const id = localStorage.getItem("id");
     const fetchData = async () => {
-      const id = localStorage.getItem("id");
-      const response = await api.get(`/match/unbet/${id}`);
+      const response =
+        parseInt(id) === 0
+          ? await api.get("/match/noscore")
+          : await api.get(`/match/unbet/${id}`);
       if (response.status === 200) {
-        setMatches(
-          response.data.filter(
-            (match) =>
-              match.date > todayDateString ||
-              (match.date === todayDateString && parseInt(match.time) > hour)
-          )
-        );
+        id === 0
+          ? setMatches(
+              response.data.filter(
+                (match) =>
+                  match.date > todayDateString ||
+                  (match.date === todayDateString &&
+                    parseInt(match.time) > hour)
+              )
+            )
+          : setMatches(response.data);
 
         setCurrentMatch([0]);
         setIsLoading(false);

@@ -1,7 +1,7 @@
 import "./css/MatchCardView.css";
 export const MatchCardView = ({ match }) => {
-  const calculatePoints = (matchResult, betResult) => {
-    if (matchResult === betResult) return 5;
+  const calculatePoints = (matchResult, betResult, weight) => {
+    if (matchResult === betResult) return 5 * weight;
 
     const [matchTeam1, matchTeam2] = matchResult.split(":").map(Number);
     const [betTeam1, betTeam2] = betResult.split(":").map(Number);
@@ -9,7 +9,7 @@ export const MatchCardView = ({ match }) => {
     return (matchTeam1 === betTeam1 && matchTeam2 === betTeam2) ||
       (matchTeam1 < matchTeam2 && betTeam1 < betTeam2) ||
       (matchTeam1 > matchTeam2 && betTeam1 > betTeam2)
-      ? 3
+      ? 3 * weight
       : 0;
   };
   const group = match.type;
@@ -17,20 +17,29 @@ export const MatchCardView = ({ match }) => {
   const teamTwo = match.teamTwo;
   const flagOne = "/flags/" + teamOne + ".png";
   const flagTwo = "/flags/" + teamTwo + ".png";
-  const time = match.time + ":00";
+  const time = match.time;
   const date = match.date;
   const location = match.location;
   const score = match.score;
   const bet = match.betScore;
+  const weight = match.type.charAt(0) === "G" ? 1 : 2;
   const points =
-    bet !== null && score.length > 2 ? calculatePoints(score, bet) : "";
+    bet !== null && score.length > 2 ? calculatePoints(score, bet, weight) : "";
 
   const styles = {
     backgroundColor:
-      points === 0 ? "var(--error)" : points === 5 ? "var(--success)" : "",
+      points === 0
+        ? "var(--error)"
+        : points === 5 || points === 10
+        ? "var(--success)"
+        : "",
+    borderColor: points > 0 ? "var(--accent)" : "",
+    borderWidth: points > 0 ? "2px" : "0",
+    borderStyle: "solid",
+
     margin: "10px",
   };
-
+  const admin = parseInt(localStorage.getItem("id")) === 0;
   return (
     <div className="card-view flex-center" style={styles}>
       <p>{group}</p>
@@ -43,11 +52,17 @@ export const MatchCardView = ({ match }) => {
         <p>{teamTwo.slice(0, 3).toUpperCase()}</p>
         <img alt="flag" src={flagTwo} className="img-flag" />
       </div>
-      <p className="bet">Your bet: {bet}</p>
-      <p className="points">Points: {points}</p>
-      <p>{time}</p>
+      {admin ? (
+        ""
+      ) : (
+        <>
+          <p className="bet">Your bet: {bet}</p>
+          <p className="points">Points: {points}</p>
+        </>
+      )}
+      <p>{time}:00</p>
       <p>
-        {date} {location}
+        {date}, {location}
       </p>
     </div>
   );

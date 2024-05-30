@@ -4,15 +4,15 @@ import "./css/Table.css";
 import { TableElement } from "./TableElement";
 
 export const Table = () => {
-  const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [playersTable, setPlayersTable] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get("/user/table");
         if (response.status === 200) {
-          setPlayers(response.data);
+          setPlayersTable(response.data);
           setIsLoading(false);
         }
       } catch (error) {
@@ -21,63 +21,6 @@ export const Table = () => {
     };
     fetchData();
   }, []);
-
-  const calculatePoints = (betScore, matchScore) => {
-    if (betScore === matchScore) return 5;
-
-    const [betTeam1, betTeam2] = betScore.split(":").map(Number);
-    const [matchTeam1, matchTeam2] = matchScore.split(":").map(Number);
-
-    if (
-      (betTeam1 > betTeam2 && matchTeam1 > matchTeam2) ||
-      (betTeam1 < betTeam2 && matchTeam1 < matchTeam2) ||
-      (betTeam1 === betTeam2 && matchTeam1 === matchTeam2)
-    ) {
-      return 3;
-    }
-
-    return 0;
-  };
-
-  const createPlayersStats = (data) => {
-    const playersStats = {};
-
-    data.forEach((e) => {
-      if (!playersStats[e.username]) {
-        playersStats[e.username] = {
-          username: e.username,
-          points: 0,
-          perfectBets: 0,
-          goodBets: 0,
-        };
-      }
-
-      if (e.betScore && e.score) {
-        const points = calculatePoints(e.betScore, e.score);
-        playersStats[e.username].points += points;
-        if (points === 5) {
-          playersStats[e.username].perfectBets += 1;
-        } else if (points === 3) {
-          playersStats[e.username].goodBets += 1;
-        }
-      }
-    });
-
-    const sortedPlayersStats = Object.values(playersStats).sort((a, b) => {
-      if (b.points !== a.points) {
-        return b.points - a.points; // Sort by points in descending order
-      } else {
-        return b.perfectBets - a.perfectBets; // Sort by perfectBets in descending order if points are the same
-      }
-    });
-
-    return sortedPlayersStats;
-  };
-
-  const playersTable = useMemo(
-    () => createPlayersStats(players),
-    [players, createPlayersStats]
-  );
 
   return isLoading ? (
     <p>Loading...</p>

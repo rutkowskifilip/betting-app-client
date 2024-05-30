@@ -32,11 +32,14 @@ export const BetCardView = ({ match, enabled, setSaved, saved }) => {
     const matchId = match.id;
     const score = scoreTeamOne + ":" + scoreTeamTwo;
     try {
-      const response = await api.post("/bet/add", {
-        userId,
-        matchId,
-        score,
-      });
+      const response =
+        parseInt(userId) === 0
+          ? await api.post("/match/score", { matchId, score })
+          : await api.post("/bet/add", {
+              userId,
+              matchId,
+              score,
+            });
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Network response was not ok");
       }
@@ -90,7 +93,7 @@ export const BetCardView = ({ match, enabled, setSaved, saved }) => {
       </div>
       <p>{match.time}:00</p>
       <p>
-        {match.date} {match.location}
+        {match.date}, {match.location}
       </p>
       {enabled ? (
         <button

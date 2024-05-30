@@ -17,7 +17,7 @@ export const Home = (params) => {
     }
   }, []);
 
-  const [view, setView] = useState(<OtherBets />);
+  const [view, setView] = useState(<Table />);
   const changeView = (id) => {
     if (id === "unbet") {
       setView(<UnbetMatches />);

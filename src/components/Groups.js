@@ -15,7 +15,8 @@ export const Groups = () => {
   const today = new Date();
   const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
   const hour = today.getHours();
-  const startDate = "2024-06-29";
+  const startDate = "2024-06-14";
+  const id = localStorage.getItem("id");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,7 +35,8 @@ export const Groups = () => {
 
     if (
       todayDateString < startDate ||
-      (todayDateString === startDate && hour < 21)
+      (todayDateString === startDate && hour < 21) ||
+      parseInt(id) === 0
     ) {
       setDisabled(false);
     } else {
@@ -98,7 +100,6 @@ export const Groups = () => {
     }
   }, [currentGroup, isLoading]); // Include groups in the dependency array
   const handleSaveClick = async () => {
-    const id = localStorage.getItem("id");
     try {
       const response = await api.post("/group/save", {
         groups,
