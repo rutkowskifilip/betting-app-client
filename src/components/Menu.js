@@ -44,6 +44,13 @@ export const Menu = ({ onItemClick }) => {
           Groups
         </div>
         <div
+          id="otherBets"
+          className="menu-elem flex-center"
+          onClick={handleItemClick}
+        >
+          Other Bets
+        </div>
+        <div
           id="rules"
           className="menu-elem flex-center"
           onClick={handleItemClick}

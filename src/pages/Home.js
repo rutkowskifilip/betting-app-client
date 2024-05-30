@@ -7,6 +7,7 @@ import { Menu } from "../components/Menu";
 import { Table } from "../components/Table";
 import { UnbetMatches } from "../components/UnbetMatches";
 import { useNavigate } from "react-router-dom";
+import { OtherBets } from "../components/OtherBets";
 
 export const Home = (params) => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const Home = (params) => {
     }
   }, []);
 
-  const [view, setView] = useState();
+  const [view, setView] = useState(<OtherBets />);
   const changeView = (id) => {
     if (id === "unbet") {
       setView(<UnbetMatches />);
@@ -28,6 +29,8 @@ export const Home = (params) => {
       setView("");
     } else if (id === "groups") {
       setView(<Groups />);
+    } else if (id === "otherBets") {
+      setView(<OtherBets />);
     } else if (id === "addMatch") {
       setView(<AddMatch />);
     } else if (id === "addUser") {

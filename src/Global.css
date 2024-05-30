@@ -189,13 +189,18 @@ h1 {
   margin: 0;
 }
 .page-login,
-.page-add-user {
+.page-add-user,
+.page-other-bets {
   height: 100vh;
   width: 100%;
 }
+.page-other-bets {
+  justify-content: space-evenly;
+}
 
 .form-login,
-.form-add-user {
+.form-add-user,
+.form-other-bets {
   background-color: var(--primary200);
   width: 50%;
   height: 50%;
@@ -203,6 +208,9 @@ h1 {
   justify-content: space-evenly;
   padding: 0;
   border-radius: 25px;
+}
+.form-other-bets {
+  width: 40%;
 }
 .div-date-inputs,
 .div-text-inputs {
