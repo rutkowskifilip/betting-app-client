@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AddMatch } from "../components/AddMatch";
 import { AddUser } from "../components/AddUser";
 import { AllMatches } from "../components/AllMatches";
 import { Groups } from "../components/Groups";
 import { Menu } from "../components/Menu";
+import { OtherBets } from "../components/OtherBets";
 import { Table } from "../components/Table";
 import { UnbetMatches } from "../components/UnbetMatches";
-import { useNavigate } from "react-router-dom";
-import { OtherBets } from "../components/OtherBets";
 
 export const Home = (params) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("id")) {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 

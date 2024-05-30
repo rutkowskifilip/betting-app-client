@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import "./css/Table.css";
 import { TableElement } from "./TableElement";

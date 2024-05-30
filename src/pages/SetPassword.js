@@ -1,14 +1,13 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../axios-instance";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 export const SetPassword = (params) => {
   const [password, setPassword] = useState("");
   const [repPassword, setRepPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const { auth } = useParams();
   const navigate = useNavigate();
-  // TODO id from url
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -32,7 +31,7 @@ export const SetPassword = (params) => {
         }
         // console.log(response);
         alert(response.data);
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         console.error("There was a problem with your Axios request:", error);
       }

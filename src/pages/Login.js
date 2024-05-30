@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useState } from "react";
-import api from "../axios-instance";
 import { useNavigate } from "react-router-dom";
+import api from "../axios-instance";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ export const Login = () => {
       Cookies.set("token", response.data.token, { expires: 1, secure: true });
 
       localStorage.setItem("id", response.data.id);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {

@@ -1,6 +1,6 @@
-import "./css/Menu.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import "./css/Menu.css";
 export const Menu = ({ onItemClick }) => {
   const navigate = useNavigate();
   const handleItemClick = (event) => {
@@ -9,7 +9,7 @@ export const Menu = ({ onItemClick }) => {
   const handleLogoutClick = (e) => {
     localStorage.removeItem("id");
     Cookies.remove("token");
-    navigate("/");
+    navigate("/login");
   };
   const admin = parseInt(localStorage.getItem("id")) === 0;
   return (

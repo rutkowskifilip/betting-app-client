@@ -8,12 +8,12 @@ import { GroupView } from "./GroupView";
 export const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentGroup, setCurrentGroup] = useState(0); // Set initial currentGroup index
+  const [currentGroup, setCurrentGroup] = useState(0);
   const [prevGroup, setPrevGroup] = useState();
   const [nextGroup, setNextGroup] = useState();
   const [disabled, setDisabled] = useState(false);
   const today = new Date();
-  const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
+  const todayDateString = today.toISOString().split("T")[0];
   const hour = today.getHours();
   const startDate = "2024-06-14";
   const id = localStorage.getItem("id");
@@ -27,7 +27,6 @@ export const Groups = () => {
         const jsonData = await response.json();
         setGroups(jsonData);
         setIsLoading(false);
-        // console.log(groups, currentGroup, isLoading);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

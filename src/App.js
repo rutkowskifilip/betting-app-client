@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./Global.css";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" exact Component={Login} />
-        <Route path="/home" Component={Home} />
+        <Route path="/login" Component={Login} />
+        <Route path="/" exact Component={Home} />
         <Route path="/set-password/:auth" Component={SetPassword} />
       </Routes>
     </BrowserRouter>
