@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
-import { BetCardView } from "./BetCardView";
+import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import {
-  NavigateBefore,
-  NavigateNext,
-  SettingsOverscanRounded,
-} from "@mui/icons-material";
+import { useEffect, useState } from "react";
 import api from "../axios-instance";
+import { BetCardView } from "./BetCardView";
 export const UnbetMatches = (params) => {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [prevMatch, setPrevMatch] = useState();
@@ -19,8 +15,10 @@ export const UnbetMatches = (params) => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
     const hour = today.getHours();
+
     const fetchData = async () => {
-      const response = await api.get("/match/unbet/1");
+      const id = localStorage.getItem("id");
+      const response = await api.get(`/match/unbet/${id}`);
       if (response.status === 200) {
         setMatches(
           response.data.filter(
@@ -58,6 +56,7 @@ export const UnbetMatches = (params) => {
       <BetCardView
         match={matches[(currentMatch - 1 + matches.length) % matches.length]}
         enabled={false}
+        saved={saved}
       />
     );
 
@@ -65,9 +64,10 @@ export const UnbetMatches = (params) => {
       <BetCardView
         match={matches[(currentMatch + 1) % matches.length]}
         enabled={false}
+        saved={saved}
       />
     );
-  }, [currentMatch]);
+  }, [currentMatch, matches]);
 
   // }
   return (
@@ -89,6 +89,7 @@ export const UnbetMatches = (params) => {
             match={matches[currentMatch]}
             enabled={true}
             setSaved={setSaved}
+            saved={saved}
           />
 
           {window.innerWidth > 1200 ? nextMatch : ""}

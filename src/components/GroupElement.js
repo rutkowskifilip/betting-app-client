@@ -6,7 +6,7 @@ export const GroupElement = ({ team, index }) => {
         <p>{index + 1}</p>
       </div>
       <div className="flex-center group-flag">
-        <img src={flag} className="img-flag" />
+        <img alt="flag" src={flag} className="img-flag" />
       </div>
       <div className="flex-center group-team">
         <p>{team}</p>

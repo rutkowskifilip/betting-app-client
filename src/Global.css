@@ -204,6 +204,7 @@ h1 {
   padding: 0;
   border-radius: 25px;
 }
+.div-date-inputs,
 .div-text-inputs {
   width: 100%;
   flex-direction: column;
@@ -235,7 +236,7 @@ input[type="date"] {
   border: 2px solid var(--accent);
   margin: 0, 2px;
 }
-.div-text-inputs,
+.div-date-inputs,
 .div-team-selects {
   height: 50px;
   padding: 0;
@@ -245,7 +246,7 @@ input[type="date"] {
 .div-team-selects {
   width: 80%;
 }
-.div-text-inputs {
+.div-date-inputs {
   width: 50%;
 }
 input[type="date"] {

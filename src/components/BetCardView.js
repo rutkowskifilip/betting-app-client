@@ -1,8 +1,7 @@
-import { SettingsOverscanRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import "./css/MatchCardView.css";
-export const BetCardView = ({ match, enabled, setSaved }) => {
+export const BetCardView = ({ match, enabled, setSaved, saved }) => {
   const [scoreTeamOne, setScoreTeamOne] = useState();
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
   const [isButtonEnabled, setButtonEnabled] = useState(false);
@@ -29,7 +28,7 @@ export const BetCardView = ({ match, enabled, setSaved }) => {
     console.log(scoreTeamOne);
   };
   const handleButtonClick = async () => {
-    const userId = 1;
+    const userId = localStorage.getItem("id");
     const matchId = match.id;
     const score = scoreTeamOne + ":" + scoreTeamTwo;
     try {
@@ -46,7 +45,7 @@ export const BetCardView = ({ match, enabled, setSaved }) => {
       setScoreTeamOne("");
       setScoreTeamTwo("");
       setButtonEnabled(false);
-      setSaved(true);
+      setSaved(!saved);
     } catch (error) {
       alert("There was a problem", error);
     }
@@ -57,7 +56,11 @@ export const BetCardView = ({ match, enabled, setSaved }) => {
     <div className="card-view flex-center" style={styles}>
       <p>{match.type}</p>
       <div className="bet-area flex-center">
-        <img src={`/flags/${match.teamOne}.png`} className="img-flag" />
+        <img
+          alt="flag"
+          src={`/flags/${match.teamOne}.png`}
+          className="img-flag"
+        />
         <p>{match.teamOne.slice(0, 3).toUpperCase()}</p>
 
         <input
@@ -79,7 +82,11 @@ export const BetCardView = ({ match, enabled, setSaved }) => {
         />
 
         <p>{match.teamTwo.slice(0, 3).toUpperCase()}</p>
-        <img src={`/flags/${match.teamTwo}.png`} className="img-flag" />
+        <img
+          alt="flag"
+          src={`/flags/${match.teamTwo}.png`}
+          className="img-flag"
+        />
       </div>
       <p>{match.time}:00</p>
       <p>

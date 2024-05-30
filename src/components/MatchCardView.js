@@ -1,6 +1,4 @@
-import { useState } from "react";
 import "./css/MatchCardView.css";
-import { CurrentMatches } from "./UnbetMatches";
 export const MatchCardView = ({ match }) => {
   const calculatePoints = (matchResult, betResult) => {
     if (matchResult === betResult) return 5;
@@ -37,13 +35,13 @@ export const MatchCardView = ({ match }) => {
     <div className="card-view flex-center" style={styles}>
       <p>{group}</p>
       <div className="bet-area flex-center">
-        <img src={flagOne} className="img-flag" />
+        <img alt="flag" src={flagOne} className="img-flag" />
         <p>{teamOne.slice(0, 3).toUpperCase()}</p>
 
         <p className="score">{score}</p>
 
         <p>{teamTwo.slice(0, 3).toUpperCase()}</p>
-        <img src={flagTwo} className="img-flag" />
+        <img alt="flag" src={flagTwo} className="img-flag" />
       </div>
       <p className="bet">Your bet: {bet}</p>
       <p className="points">Points: {points}</p>

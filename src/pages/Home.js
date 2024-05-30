@@ -1,15 +1,22 @@
-import { UnbetMatches } from "../components/UnbetMatches";
+import { useEffect, useState } from "react";
+import { AddMatch } from "../components/AddMatch";
+import { AddUser } from "../components/AddUser";
 import { AllMatches } from "../components/AllMatches";
+import { Groups } from "../components/Groups";
 import { Menu } from "../components/Menu";
 import { Table } from "../components/Table";
-import { useState } from "react";
-import { Groups } from "../components/Groups";
-import { AddUser } from "../components/AddUser";
-import { SetPassword } from "../components/SetPassword";
-import { AddMatch } from "../components/AddMatch";
+import { UnbetMatches } from "../components/UnbetMatches";
+import { useNavigate } from "react-router-dom";
 
 export const Home = (params) => {
-  const [view, setView] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("id")) {
+      navigate("/");
+    }
+  }, []);
+
+  const [view, setView] = useState();
   const changeView = (id) => {
     if (id === "unbet") {
       setView(<UnbetMatches />);

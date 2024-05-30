@@ -3,7 +3,6 @@ import api from "../axios-instance";
 
 export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [type, setType] = useState("Group A");
   const [teamOne, setTeamOne] = useState("Germany");
   const [teamTwo, setTeamTwo] = useState("Scotland");
@@ -21,7 +20,6 @@ export const AddMatch = (params) => {
         }
         const jsonData = await response.json();
         setGroups(jsonData);
-        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -83,7 +81,11 @@ export const AddMatch = (params) => {
           <option value="Final">Final</option>
         </select>
         <div className="div-team-selects flex-center">
-          {flagOne ? <img key="flag" src={flagOne} className="img-flag" /> : ""}
+          {flagOne ? (
+            <img alt="flag" key="flag" src={flagOne} className="img-flag" />
+          ) : (
+            ""
+          )}
           <select
             value={teamOne}
             name="teamOne"
@@ -116,7 +118,7 @@ export const AddMatch = (params) => {
               </optgroup>
             ))}
           </select>
-          {flagTwo ? <img src={flagTwo} className="img-flag" /> : ""}
+          {flagTwo ? <img alt="flag" src={flagTwo} className="img-flag" /> : ""}
         </div>
         <select
           name="location"
@@ -130,7 +132,7 @@ export const AddMatch = (params) => {
           <option value="Dortmund">Dortmund</option>
           <option value="Munich">Munich</option>
         </select>
-        <div className="div-text-inputs flex-center">
+        <div className="div-date-inputs flex-center">
           <div style={{ color: "var(--accent)" }}>
             <input
               type="number"

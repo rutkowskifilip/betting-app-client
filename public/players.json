@@ -1,26 +1,20 @@
-[
-  { "name": "Filip", "points": 20, "perfectBets": 10, "bets": 13 },
-  { "name": "Jan", "points": 21, "perfectBets": 11, "bets": 13 },
-  { "name": "Paweł", "points": 20, "perfectBets": 10, "bets": 13 },
-  { "name": "Grzes", "points": 22, "perfectBets": 2, "bets": 13 },
-  { "name": "Kok", "points": 20, "perfectBets": 11, "bets": 13 },
-  { "name": "aaa", "points": 32, "perfectBets": 10, "bets": 13 },
-  { "name": "Filwihdiewdip", "points": 15, "perfectBets": 2, "bets": 13 },
-  { "name": "cccc", "points": 4, "perfectBets": 10, "bets": 13 },
-  { "name": "Player 9", "points": 25, "perfectBets": 12, "bets": 13 },
-  { "name": "Player 10", "points": 18, "perfectBets": 8, "bets": 13 },
-  { "name": "Player 11", "points": 19, "perfectBets": 9, "bets": 13 },
-  { "name": "Player 12", "points": 23, "perfectBets": 5, "bets": 13 },
-  { "name": "Player 13", "points": 28, "perfectBets": 13, "bets": 13 },
-  { "name": "Player 14", "points": 16, "perfectBets": 3, "bets": 13 },
-  { "name": "Player 15", "points": 27, "perfectBets": 11, "bets": 13 },
-  { "name": "Player 16", "points": 22, "perfectBets": 9, "bets": 13 },
-  { "name": "Player 17", "points": 24, "perfectBets": 7, "bets": 13 },
-  { "name": "Player 18", "points": 26, "perfectBets": 12, "bets": 13 },
-  { "name": "Player 19", "points": 17, "perfectBets": 6, "bets": 13 },
-  { "name": "Player 20", "points": 29, "perfectBets": 14, "bets": 13 }
-]
-
-
-
-
+{
+  "Polska": {
+    "Bramkarz": ["Nowak", "Kowalski", "Lewandowski"],
+    "Obrońca": ["Kaczmarek", "Mazur", "Jankowski"],
+    "Pomocnik": ["Kwiatkowski", "Walczak", "Stępień"],
+    "Napastnik": ["Adam", "Wiśniewski", "Duda"]
+  },
+  "Hiszpania": {
+    "Bramkarz": ["Garcia", "Rodriguez", "Fernandez"],
+    "Obrońca": ["Ruiz", "Hernandez", "Torres"],
+    "Pomocnik": ["Ramos", "Ortega", "Serrano"],
+    "Napastnik": ["Cruz", "Molina", "Ferrer"]
+  },
+  "Anglia": {
+    "Bramkarz": ["Smith", "Johnson", "Williams"],
+    "Obrońca": ["Watson", "Lewis", "Harris"],
+    "Pomocnik": ["Baker", "Phillips", "Mitchell"],
+    "Napastnik": ["West", "Turner", "Parker"]
+  }
+}

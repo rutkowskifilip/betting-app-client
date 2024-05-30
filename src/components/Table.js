@@ -1,7 +1,7 @@
-import { TableElement } from "./TableElement";
-import "./css/Table.css";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import api from "../axios-instance";
+import "./css/Table.css";
+import { TableElement } from "./TableElement";
 
 export const Table = () => {
   const [players, setPlayers] = useState([]);
@@ -74,7 +74,10 @@ export const Table = () => {
     return sortedPlayersStats;
   };
 
-  const playersTable = useMemo(() => createPlayersStats(players), [players]);
+  const playersTable = useMemo(
+    () => createPlayersStats(players),
+    [players, createPlayersStats]
+  );
 
   return isLoading ? (
     <p>Loading...</p>

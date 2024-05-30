@@ -9,7 +9,8 @@ export const AllMatches = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/match/all/${1}`);
+        const id = localStorage.getItem("id");
+        const response = await api.get(`/match/all/${id}`);
         if (response.status === 200) {
           setMatches(response.data);
           setIsLoading(false);

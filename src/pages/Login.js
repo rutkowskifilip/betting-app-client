@@ -1,11 +1,12 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import api from "../axios-instance";
-import "./css/Login.css";
-
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -16,7 +17,7 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can handle the form submission, like sending the username and password to a server for authentication
+
     console.log("Submitted:", { username, password });
 
     try {
@@ -28,19 +29,25 @@ export const Login = () => {
         throw new Error("Network response was not ok");
       }
       console.log("Response data:", response.data);
+      setMessage("");
+      Cookies.set("token", response.data.token, { expires: 1, secure: true });
+
+      localStorage.setItem("id", response.data.id);
+      navigate("/home");
     } catch (error) {
-      console.error("There was a problem with your Axios request:", error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          setMessage(error.response.data);
+        }
+      } else {
+        console.error("There was a problem with your Axios request:", error);
+      }
     }
   };
 
   return (
     <div className="page-login flex-center">
-      <form
-        method="post"
-        onSubmit={handleSubmit}
-        className="form-login flex-center"
-        autoComplete="off"
-      >
+      <form className="form-login flex-center" autoComplete="off">
         <h1>Welcome!</h1>
         <div className="div-text-inputs flex-center">
           <input
@@ -61,6 +68,7 @@ export const Login = () => {
             placeholder="password"
           />
         </div>
+        <p style={{ color: "var(--error)" }}>{message}</p>
         <button type="submit" className="button-submit" onClick={handleSubmit}>
           Login
         </button>

@@ -1,9 +1,17 @@
 import "./css/Menu.css";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 export const Menu = ({ onItemClick }) => {
+  const navigate = useNavigate();
   const handleItemClick = (event) => {
     onItemClick(event.target.id);
   };
-  const admin = true;
+  const handleLogoutClick = (e) => {
+    localStorage.removeItem("id");
+    Cookies.remove("token");
+    navigate("/");
+  };
+  const admin = parseInt(localStorage.getItem("id")) === 0;
   return (
     <div className="menu">
       <div className="menu-group">
@@ -66,7 +74,7 @@ export const Menu = ({ onItemClick }) => {
       <div
         id="logout"
         className="menu-elem flex-center logout"
-        onClick={handleItemClick}
+        onClick={handleLogoutClick}
       >
         Logout
       </div>

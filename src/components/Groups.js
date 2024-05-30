@@ -1,9 +1,9 @@
+import { NavigateBefore, NavigateNext } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
+import api from "../axios-instance";
 import "./css/Groups.css";
 import { GroupView } from "./GroupView";
-import { IconButton } from "@mui/material";
-import { NavigateBefore, NavigateNext } from "@mui/icons-material";
-import api from "../axios-instance";
 
 export const Groups = () => {
   const [groups, setGroups] = useState([]);
@@ -98,7 +98,7 @@ export const Groups = () => {
     }
   }, [currentGroup, isLoading]); // Include groups in the dependency array
   const handleSaveClick = async () => {
-    const id = 1;
+    const id = localStorage.getItem("id");
     try {
       const response = await api.post("/group/save", {
         groups,

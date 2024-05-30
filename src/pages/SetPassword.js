@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../axios-instance";
-
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const SetPassword = (params) => {
   const [password, setPassword] = useState("");
   const [repPassword, setRepPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const id = 1;
+  const { auth } = useParams();
+  const navigate = useNavigate();
+  // TODO id from url
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -15,29 +18,31 @@ export const SetPassword = (params) => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (password === repPassword) {
-      console.log("password");
       setPasswordError("");
       try {
         const response = await api.post("/user/setPassword", {
-          id,
+          auth,
           password,
         });
+        // console.log(response);
         if (response.status < 200 || response.status >= 300) {
           throw new Error("Network response was not ok");
         }
-        console.log("Response data:", response.data);
+        // console.log(response);
+        alert(response.data);
+        navigate("/");
       } catch (error) {
         console.error("There was a problem with your Axios request:", error);
       }
     } else {
       setPasswordError("Password are not the same");
     }
-    e.preventDefault();
   };
   return (
     <div className="flex-center page-add-user">
-      <form action="/" method="post" className="form-add-user flex-center">
+      <div className="form-add-user flex-center">
         <div className="div-text-inputs flex-center">
           <input
             type="password"
@@ -66,7 +71,7 @@ export const SetPassword = (params) => {
         <button type="submit" className="button-submit" onClick={handleSubmit}>
           Save
         </button>
-      </form>
+      </div>
     </div>
   );
 };
