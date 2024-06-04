@@ -1,0 +1,17 @@
+.card-view {
+  width: 26%;
+  min-width: 320px;
+  height: 200px;
+  background-color: var(--primary200);
+  flex-direction: column;
+  border-radius: 25px;
+  justify-content: center;
+}
+.bet-area {
+  width: 100%;
+  margin: 20px 0;
+}
+.bet-area > p {
+  margin: 0 10px;
+}
+

@@ -1,4 +1,4 @@
-import "./css/MatchCardView.css";
+import "./css/CardView.css";
 export const MatchCardView = ({ match }) => {
   const calculatePoints = (matchResult, betResult, weight) => {
     if (matchResult === betResult) return 5 * weight;

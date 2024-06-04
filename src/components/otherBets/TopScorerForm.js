@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../axios-instance";
+
 export const TopScorerForm = ({ id, disabled }) => {
   const [country, setCountry] = useState(false);
   const [position, setPosition] = useState(false);
@@ -12,7 +13,6 @@ export const TopScorerForm = ({ id, disabled }) => {
       try {
         const response = await api.get(`/bet/topscorer/${id}`);
         if (response.status === 200) {
-          console.log(response.data.player);
           setCountry(response.data.country);
           setPosition(response.data.position);
           setPlayer(response.data.player);

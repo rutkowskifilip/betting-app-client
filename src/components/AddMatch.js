@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
-
+import "./css/AddMatch.css";
 export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
   const [type, setType] = useState("Group A");

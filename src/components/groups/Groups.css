@@ -67,7 +67,7 @@
   transform: scale(0.8); /* Add hover effect */
   opacity: 0.5;
 }
-.div-info {
+.div-message {
   width: 100%;
   height: 200px;
   position: fixed;

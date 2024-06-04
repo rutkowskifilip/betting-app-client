@@ -2,12 +2,8 @@ import { useState } from "react";
 import api from "../axios-instance";
 import "../Global.css";
 export const AddUser = (params) => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+  const [message, setMessage] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,9 +12,9 @@ export const AddUser = (params) => {
   const validateEmail = () => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (re.test(String(email).toLowerCase())) {
-      setEmailError("");
+      setMessage("");
     } else {
-      setEmailError("Invalid email address");
+      setMessage("Invalid email address");
     }
   };
   const handleSubmit = async (e) => {
@@ -26,7 +22,6 @@ export const AddUser = (params) => {
 
     try {
       const response = await api.post("/user/add", {
-        username,
         email,
       });
       if (response.status < 200 || response.status >= 300) {
@@ -34,8 +29,10 @@ export const AddUser = (params) => {
       }
       alert(response.data);
       setEmail("");
-      setUsername("");
     } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data);
+      }
       console.error("There was a problem with your Axios request:", error);
     }
   };
@@ -43,16 +40,6 @@ export const AddUser = (params) => {
     <div className="flex-center page-add-user">
       <div className="form-add-user flex-center">
         <div className="div-text-inputs">
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            on
-            className="text-input"
-            placeholder="login"
-          />
-
           <input
             type="email"
             id="email"
@@ -62,11 +49,7 @@ export const AddUser = (params) => {
             className="text-input"
             placeholder="email"
           />
-          {emailError && (
-            <p style={{ color: "var(--error)" }} className="error-message">
-              {emailError}
-            </p>
-          )}
+          {message && <p className="error-message">{message}</p>}
         </div>
         <button type="submit" className="button-submit" onClick={handleSubmit}>
           Add User

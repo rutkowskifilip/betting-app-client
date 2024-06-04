@@ -11,6 +11,7 @@ export const UnbetMatches = (params) => {
   const [isLoading, setIsLoading] = useState(true);
   const [saved, setSaved] = useState(false);
   const [info, setInfo] = useState("Loading...");
+  const [message, setMessage] = useState("");
   useEffect(() => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
@@ -76,11 +77,11 @@ export const UnbetMatches = (params) => {
 
   // }
   return (
-    <div className="flex-center" style={styles}>
+    <div className="page-unbet-matches flex-center" style={styles}>
       {isLoading ? (
         <p>{info}</p>
       ) : (
-        <>
+        <div className="flex-center">
           <IconButton
             onClick={goToPrevMatch}
             className="button-prev"
@@ -95,6 +96,8 @@ export const UnbetMatches = (params) => {
             enabled={true}
             setSaved={setSaved}
             saved={saved}
+            message={message}
+            setMessage={setMessage}
           />
 
           {window.innerWidth > 1200 ? nextMatch : ""}
@@ -105,8 +108,9 @@ export const UnbetMatches = (params) => {
           >
             <NavigateNext fontSize="large" />
           </IconButton>
-        </>
+        </div>
       )}
+      {message && <p className="error-message">{message}</p>}
     </div>
   );
 };

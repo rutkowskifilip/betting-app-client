@@ -1,32 +1,53 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
-import api from "../axios-instance";
-import "./css/Groups.css";
+import api from "../../axios-instance";
+import "./Groups.css";
 import { GroupView } from "./GroupView";
 
 export const Groups = () => {
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState();
+  const [orderedGroups, setOrderedGroups] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [currentGroup, setCurrentGroup] = useState(0);
   const [prevGroup, setPrevGroup] = useState();
   const [nextGroup, setNextGroup] = useState();
   const [disabled, setDisabled] = useState(false);
+  const [message, setMessage] = useState("");
+  const [id, setId] = useState();
   const today = new Date();
   const todayDateString = today.toISOString().split("T")[0];
   const hour = today.getHours();
   const startDate = "2024-06-14";
-  const id = localStorage.getItem("id");
+
   useEffect(() => {
+    setId(localStorage.getItem("id"));
     const fetchData = async () => {
-      try {
-        const response = await fetch("/groups.json");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+      if (!groups) {
+        try {
+          const response = await fetch("/groups.json");
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const jsonData = await response.json();
+          setGroups(jsonData);
+          setIsLoading(false);
+          // console.log(jsonData);
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-        const jsonData = await response.json();
-        setGroups(jsonData);
-        setIsLoading(false);
+      }
+
+      try {
+        const response = await api.get(`/group/${id}`);
+        if (response.status === 200) {
+          const json = [];
+          Object.keys(response.data).map((key) => {
+            json.push({ name: key, teams: response.data[key].split(",") });
+          });
+          // console.log(json);
+          setOrderedGroups(json);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -43,7 +64,9 @@ export const Groups = () => {
     }
     fetchData();
   }, []);
-
+  useEffect(() => {
+    setGroups(orderedGroups);
+  }, [orderedGroups]);
   const goToNextGroup = () => {
     if (groups) {
       setCurrentGroup((currentGroup + 1) % groups.length);
@@ -97,7 +120,7 @@ export const Groups = () => {
         />
       );
     }
-  }, [currentGroup, isLoading]); // Include groups in the dependency array
+  }, [currentGroup, isLoading, groups]); // Include groups in the dependency array
   const handleSaveClick = async () => {
     try {
       const response = await api.post("/group/save", {
@@ -109,13 +132,16 @@ export const Groups = () => {
       }
       alert(response.data);
     } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data);
+      }
       alert("There was a problem", error);
     }
   };
   return (
     <>
       {disabled ? (
-        <div className="div-info flex-center">Typing time has elapsed.</div>
+        <div className="div-message flex-center">Typing time has elapsed.</div>
       ) : (
         ""
       )}
@@ -149,6 +175,7 @@ export const Groups = () => {
               <NavigateNext fontSize="large" />
             </IconButton>
           </div>
+          {message && <p className="error-message">{message}</p>}
           <button
             className="button-submit"
             onClick={handleSaveClick}

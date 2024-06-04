@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axios-instance";
 export const Login = () => {
@@ -7,6 +7,13 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id")) {
+      navigate("/");
+    }
+  }, []);
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -18,8 +25,6 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submitted:", { username, password });
-
     try {
       const response = await api.post("/user/login", {
         username,
@@ -28,7 +33,7 @@ export const Login = () => {
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Network response was not ok");
       }
-      console.log("Response data:", response.data);
+
       setMessage("");
       Cookies.set("token", response.data.token, { expires: 1, secure: true });
 
@@ -36,7 +41,7 @@ export const Login = () => {
       navigate("/");
     } catch (error) {
       if (error.response) {
-        if (error.response.status === 400) {
+        if (error.response.status === 409) {
           setMessage(error.response.data);
         }
       } else {
@@ -56,7 +61,7 @@ export const Login = () => {
             value={username}
             onChange={handleUsernameChange}
             className="text-input"
-            placeholder="login"
+            placeholder="username"
           />
 
           <input

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import api from "../axios-instance";
-import "./css/Table.css";
+import api from "../../axios-instance";
+import "./Table.css";
 import { TableElement } from "./TableElement";
 
 export const Table = () => {

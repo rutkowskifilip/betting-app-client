@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
-import "./css/MatchCardView.css";
-export const BetCardView = ({ match, enabled, setSaved, saved }) => {
+import "./css/CardView.css";
+export const BetCardView = ({
+  match,
+  enabled,
+  setSaved,
+  saved,
+  message,
+  setMessage,
+}) => {
   const [scoreTeamOne, setScoreTeamOne] = useState();
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
   const [isButtonEnabled, setButtonEnabled] = useState(false);
@@ -25,7 +32,6 @@ export const BetCardView = ({ match, enabled, setSaved, saved }) => {
     const value = event.target.value;
     setScoreTeamTwo(value);
     setButtonEnabled(value >= 0 && scoreTeamOne >= 0 && scoreTeamOne !== "");
-    console.log(scoreTeamOne);
   };
   const handleButtonClick = async () => {
     const userId = localStorage.getItem("id");
@@ -43,14 +49,17 @@ export const BetCardView = ({ match, enabled, setSaved, saved }) => {
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Network response was not ok");
       }
-      console.log(response);
+
       alert(response.data);
       setScoreTeamOne("");
       setScoreTeamTwo("");
       setButtonEnabled(false);
       setSaved(!saved);
     } catch (error) {
-      alert("There was a problem", error);
+      if (error.response) {
+        setMessage(error.response.data);
+      }
+      // alert("There was a problem", error);
     }
   };
   return isLoading ? (
@@ -97,7 +106,7 @@ export const BetCardView = ({ match, enabled, setSaved, saved }) => {
       </p>
       {enabled ? (
         <button
-          className="save-bet"
+          className="button-submit button-small"
           onClick={handleButtonClick}
           disabled={!isButtonEnabled}
         >

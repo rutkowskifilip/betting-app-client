@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { AddMatch } from "../components/AddMatch";
 import { AddUser } from "../components/AddUser";
 import { AllMatches } from "../components/AllMatches";
-import { Groups } from "../components/Groups";
+import { Groups } from "../components/groups/Groups";
 import { Menu } from "../components/Menu";
-import { OtherBets } from "../components/OtherBets";
-import { Table } from "../components/Table";
+import { OtherBets } from "../components/otherBets/OtherBets";
+import { Table } from "../components/table/Table";
 import { UnbetMatches } from "../components/UnbetMatches";
 
 export const Home = (params) => {

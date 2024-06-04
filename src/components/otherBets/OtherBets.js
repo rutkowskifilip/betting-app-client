@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { TopScorerForm } from "./otherBets/TopScorerForm";
-import { WinnersForm } from "./otherBets/WinnersForm";
-
+import { TopScorerForm } from "./TopScorerForm";
+import { WinnersForm } from "./WinnersForm";
+import "./OtherBets.css";
 export const OtherBets = () => {
   const [id, setId] = useState();
 
   const [disabled, setDisabled] = useState(false);
   const today = new Date();
-  const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
+  const todayDateString = today.toISOString().split("T")[0];
   const hour = today.getHours();
   const startDate = "2024-06-14";
 

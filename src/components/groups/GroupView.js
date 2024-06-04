@@ -14,7 +14,6 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
     }
   }, []);
   useEffect(() => {
-    console.log(orderedTeams);
     onOrderChange(group, orderedTeams);
   }, [dragged]);
   useEffect(() => {
@@ -117,18 +116,18 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
           }`}
         />
         {orderedTeams.map((team, index) => (
-          <>
+          <div key={team}>
             {dragged !== index && (
               <>
                 <div
-                  key={index}
+                  key={team}
                   className="group-element"
                   onMouseDown={(e) => {
                     e.preventDefault();
                     setDragged(index);
                   }}
                 >
-                  <GroupElement team={team} index={index} />
+                  <GroupElement key={team} team={team} index={index} />
                 </div>
                 <div
                   className={`group-element drop-zone ${
@@ -137,7 +136,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
                 />
               </>
             )}
-          </>
+          </div>
         ))}
       </div>
     </>
