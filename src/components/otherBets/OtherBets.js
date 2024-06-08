@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TopScorerForm } from "./TopScorerForm";
 import { WinnersForm } from "./WinnersForm";
 import "./OtherBets.css";
-export const OtherBets = () => {
-  const [id, setId] = useState();
+import Cookies from "js-cookie";
 
+export const OtherBets = () => {
   const [disabled, setDisabled] = useState(false);
   const today = new Date();
   const todayDateString = today.toISOString().split("T")[0];
   const hour = today.getHours();
   const startDate = "2024-06-14";
 
+  const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
-      setId(localStorage.getItem("id"));
       if (
         todayDateString < startDate ||
         (todayDateString === startDate && hour < 21) ||
-        parseInt(id) === 0
+        parseInt(userId) === 0
       ) {
         setDisabled(false);
       } else {
@@ -37,8 +37,8 @@ export const OtherBets = () => {
       )}
 
       <div className="page-other-bets flex-center">
-        <TopScorerForm id={id} disabled={disabled} />
-        <WinnersForm id={id} disabled={disabled} />
+        <TopScorerForm disabled={disabled} />
+        <WinnersForm disabled={disabled} />
       </div>
     </>
   );

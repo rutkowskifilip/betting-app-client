@@ -1,6 +1,9 @@
 import "./css/CardView.css";
-export const MatchCardView = ({ match }) => {
+
+import Cookies from "js-cookie";
+export const MatchCardView = ({ match, admin }) => {
   const calculatePoints = (matchResult, betResult, weight) => {
+    console.log(betResult);
     if (matchResult === betResult) return 5 * weight;
 
     const [matchTeam1, matchTeam2] = matchResult.split(":").map(Number);
@@ -31,6 +34,8 @@ export const MatchCardView = ({ match }) => {
       points === 0
         ? "var(--error)"
         : points === 5 || points === 10
+        ? "var(--accent)"
+        : points === 6 || points === 3
         ? "var(--success)"
         : "",
     borderColor: points > 0 ? "var(--accent)" : "",
@@ -39,7 +44,7 @@ export const MatchCardView = ({ match }) => {
 
     margin: "10px",
   };
-  const admin = parseInt(localStorage.getItem("id")) === 0;
+
   return (
     <div className="card-view flex-center" style={styles}>
       <p>{group}</p>

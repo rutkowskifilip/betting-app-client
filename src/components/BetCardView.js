@@ -1,6 +1,8 @@
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import "./css/CardView.css";
+
 export const BetCardView = ({
   match,
   enabled,
@@ -13,7 +15,7 @@ export const BetCardView = ({
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
   const [isButtonEnabled, setButtonEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const userId = Cookies.get("userId");
   useEffect(() => {
     if (match) {
       setIsLoading(false);
@@ -34,7 +36,6 @@ export const BetCardView = ({
     setButtonEnabled(value >= 0 && scoreTeamOne >= 0 && scoreTeamOne !== "");
   };
   const handleButtonClick = async () => {
-    const userId = localStorage.getItem("id");
     const matchId = match.id;
     const score = scoreTeamOne + ":" + scoreTeamTwo;
     try {

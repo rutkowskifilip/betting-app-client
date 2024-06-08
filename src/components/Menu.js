@@ -1,20 +1,29 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "./css/Menu.css";
+
 export const Menu = ({ onItemClick }) => {
+  const userId = Cookies.get("userId");
   const navigate = useNavigate();
   const handleItemClick = (event) => {
     onItemClick(event.target.id);
   };
   const handleLogoutClick = (e) => {
-    localStorage.removeItem("id");
+    Cookies.remove("userId");
     Cookies.remove("token");
     navigate("/login");
   };
-  const admin = parseInt(localStorage.getItem("id")) === 0;
+  const admin = parseInt(userId) === 0;
   return (
     <div className="menu">
       <div className="menu-group">
+        <div
+          id="mainpage"
+          className="menu-elem flex-center"
+          onClick={handleItemClick}
+        >
+          Home
+        </div>
         <div
           id="unbet"
           className="menu-elem flex-center"
@@ -50,13 +59,7 @@ export const Menu = ({ onItemClick }) => {
         >
           Other Bets
         </div>
-        <div
-          id="rules"
-          className="menu-elem flex-center"
-          onClick={handleItemClick}
-        >
-          Rules
-        </div>
+
         {admin ? (
           <>
             <div

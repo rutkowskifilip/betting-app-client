@@ -1,18 +1,20 @@
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axios-instance";
+
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const userId = Cookies.get("userId");
   useEffect(() => {
-    if (localStorage.getItem("id")) {
+    if (userId) {
       navigate("/");
     }
-  }, []);
+  }, [userId]);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -36,8 +38,9 @@ export const Login = () => {
 
       setMessage("");
       Cookies.set("token", response.data.token, { expires: 1, secure: true });
+      // setUserId(response.data.id);
+      Cookies.set("userId", response.data.id, { expires: 1, secure: true });
 
-      localStorage.setItem("id", response.data.id);
       navigate("/");
     } catch (error) {
       if (error.response) {
@@ -52,7 +55,7 @@ export const Login = () => {
 
   return (
     <div className="page-login flex-center">
-      <form className="form-login flex-center" autoComplete="off">
+      <div className="form-login flex-center" autoComplete="off">
         <h1>Welcome!</h1>
         <div className="div-text-inputs flex-center">
           <input
@@ -77,7 +80,7 @@ export const Login = () => {
         <button type="submit" className="button-submit" onClick={handleSubmit}>
           Login
         </button>
-      </form>
+      </div>
     </div>
   );
 };

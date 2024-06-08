@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AddMatch } from "../components/AddMatch";
 import { AddUser } from "../components/AddUser";
@@ -9,24 +9,28 @@ import { OtherBets } from "../components/otherBets/OtherBets";
 import { Table } from "../components/table/Table";
 import { UnbetMatches } from "../components/UnbetMatches";
 
+import Cookies from "js-cookie";
+import { MainPage } from "../components/MainPage";
 export const Home = (params) => {
+  const userId = Cookies.get("userId");
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("id")) {
+    console.log(userId);
+    if (!userId) {
       navigate("/login");
     }
   }, []);
 
-  const [view, setView] = useState(<Table />);
+  const [view, setView] = useState(<MainPage />);
   const changeView = (id) => {
-    if (id === "unbet") {
+    if (id === "mainpage") {
+      setView(<MainPage />);
+    } else if (id === "unbet") {
       setView(<UnbetMatches />);
     } else if (id === "table") {
       setView(<Table />);
     } else if (id === "all") {
       setView(<AllMatches />);
-    } else if (id === "rules") {
-      setView("");
     } else if (id === "groups") {
       setView(<Groups />);
     } else if (id === "otherBets") {

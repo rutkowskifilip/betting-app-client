@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import api from "../../axios-instance";
 
-export const TopScorerForm = ({ id, disabled }) => {
+import Cookies from "js-cookie";
+export const TopScorerForm = ({ disabled }) => {
+  const [message, setMessage] = useState("");
   const [country, setCountry] = useState(false);
   const [position, setPosition] = useState(false);
   const [player, setPlayer] = useState(false);
 
   const [players, setPlayers] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/bet/topscorer/${id}`);
+        const response = await api.get(`/bet/topscorer/${userId}`);
         if (response.status === 200) {
           setCountry(response.data.country);
           setPosition(response.data.position);
@@ -39,11 +43,13 @@ export const TopScorerForm = ({ id, disabled }) => {
   }, []);
   const handleCountrySelect = (e) => {
     setCountry(e.target.value);
+    setPosition(null);
+    setPlayer(null);
   };
 
   const handlePositionSelect = (e) => {
     setPosition(e.target.value);
-    setPlayer(0);
+    setPlayer(null);
   };
   const handlePlayerSelect = (e) => {
     setPlayer(e.target.value);
@@ -51,8 +57,6 @@ export const TopScorerForm = ({ id, disabled }) => {
 
   const handleSaveTopScorer = async () => {
     try {
-      const userId = localStorage.getItem("id");
-
       const response = await api.post("/bet/topscorer", {
         player,
         position,
@@ -64,13 +68,16 @@ export const TopScorerForm = ({ id, disabled }) => {
       }
       alert(response.data);
     } catch (error) {
-      alert("There was a problem", error);
+      if (error.response) {
+        setMessage(error.response.data);
+      }
+      // alert("There was a problem", error);
     }
   };
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <form className="form-other-bets flex-center" autoComplete="off">
+    <div className="form-other-bets flex-center" autoComplete="off">
       <h1>Top scorer</h1>
       <p>Nationality:</p>
       <select
@@ -78,7 +85,7 @@ export const TopScorerForm = ({ id, disabled }) => {
         id="country"
         onChange={handleCountrySelect}
         required={true}
-        defaultValue={country ? country : 0}
+        value={country || 0}
         disabled={disabled}
       >
         <option disabled value={0} style={{ display: "none" }}>
@@ -97,7 +104,7 @@ export const TopScorerForm = ({ id, disabled }) => {
         onChange={handlePositionSelect}
         disabled={!country || disabled}
         required={true}
-        defaultValue={position ? position : 0}
+        value={position || 0}
       >
         <option disabled value={0} style={{ display: "none" }}>
           -- select an option --
@@ -116,7 +123,7 @@ export const TopScorerForm = ({ id, disabled }) => {
         onChange={handlePlayerSelect}
         disabled={!position || disabled}
         required={true}
-        defaultValue={player ? player : 0}
+        value={player || 0}
       >
         <option disabled value={0} style={{ display: "none" }}>
           -- select an option --
@@ -128,15 +135,16 @@ export const TopScorerForm = ({ id, disabled }) => {
             </option>
           ))}
       </select>
+      {message && <p className="error-message">{message}</p>}
       <button
         type="submit"
         id="button-sace-topscorer"
         className="button-submit"
         onClick={handleSaveTopScorer}
-        disabled={disabled}
+        disabled={disabled || !player}
       >
         Save
       </button>
-    </form>
+    </div>
   );
 };

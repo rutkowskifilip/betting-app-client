@@ -3,7 +3,10 @@ import "./Global.css";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SetPassword } from "./pages/SetPassword";
-function App() {
+import { useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,6 +16,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

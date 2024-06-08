@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../axios-instance";
 
-export const WinnersForm = ({ disabled, id }) => {
+import Cookies from "js-cookie";
+export const WinnersForm = ({ disabled }) => {
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [groups, setGroups] = useState();
   const [first, setFirst] = useState();
   const [second, setSecond] = useState();
+
+  const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/bet/winners/${id}`);
+        const response = await api.get(`/bet/winners/${userId}`);
         if (response.status === 200) {
-          const winners = response.data[0];
-          setFirst(winners.first);
-          setSecond(winners.second);
+          if (response.data.length > 0) {
+            const winners = response.data[0];
+            console.log(winners);
+            setFirst(winners.first);
+            setSecond(winners.second);
+          }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,8 +49,6 @@ export const WinnersForm = ({ disabled, id }) => {
   };
   const handleSaveWinners = async () => {
     try {
-      const userId = localStorage.getItem("id");
-
       const response = await api.post("/bet/winners", {
         first,
         second,
@@ -54,24 +59,27 @@ export const WinnersForm = ({ disabled, id }) => {
       }
       alert(response.data);
     } catch (error) {
-      alert("There was a problem", error);
+      if (error.response) {
+        setMessage(error.response.data);
+      }
+      // alert("There was a problem", error);
     }
   };
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <form className="form-other-bets flex-center" autoComplete="off">
+    <div className="form-other-bets flex-center" autoComplete="off">
       <h1>Winners</h1>
       <p>First:</p>
       <select
         name="first"
         id="first"
-        value={first}
+        defaultValue={first ? first : 0}
         onChange={handleFirstSelect}
         required={true}
         disabled={disabled}
       >
-        <option disabled value style={{ display: "none" }}>
+        <option disabled value={0} style={{ display: "none" }}>
           -- select an option --
         </option>
         {groups &&
@@ -90,12 +98,12 @@ export const WinnersForm = ({ disabled, id }) => {
       <select
         name="second"
         id="second"
-        value={second}
+        defaultValue={second ? second : 0}
         onChange={handleSecendSelect}
         required={true}
         disabled={disabled}
       >
-        <option disabled value style={{ display: "none" }}>
+        <option disabled value={0} style={{ display: "none" }}>
           -- select an option --
         </option>
         {groups.map((group, index) => (
@@ -108,16 +116,16 @@ export const WinnersForm = ({ disabled, id }) => {
           </optgroup>
         ))}
       </select>
-
+      {message && <p className="error-message">{message}</p>}
       <button
         type="submit"
         id="button-sace-topscorer"
         className="button-submit"
         onClick={handleSaveWinners}
-        disabled={disabled}
+        disabled={disabled || !first || !second}
       >
         Save
       </button>
-    </form>
+    </div>
   );
 };

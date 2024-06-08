@@ -1,8 +1,10 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../axios-instance";
 import { BetCardView } from "./BetCardView";
+
+import Cookies from "js-cookie";
 export const UnbetMatches = (params) => {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [prevMatch, setPrevMatch] = useState();
@@ -12,27 +14,30 @@ export const UnbetMatches = (params) => {
   const [saved, setSaved] = useState(false);
   const [info, setInfo] = useState("Loading...");
   const [message, setMessage] = useState("");
+
+  const userId = Cookies.get("userId");
   useEffect(() => {
     const today = new Date();
     const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
     const hour = today.getHours();
-    const id = localStorage.getItem("id");
+
     const fetchData = async () => {
+      console.log(userId);
       const response =
-        parseInt(id) === 0
+        parseInt(userId) === 0
           ? await api.get("/match/noscore")
-          : await api.get(`/match/unbet/${id}`);
+          : await api.get(`/match/unbet/${userId}`);
       if (response.status === 200) {
-        id === 0
-          ? setMatches(
+        userId === 0
+          ? setMatches(response.data)
+          : setMatches(
               response.data.filter(
                 (match) =>
                   match.date > todayDateString ||
                   (match.date === todayDateString &&
                     parseInt(match.time) > hour)
               )
-            )
-          : setMatches(response.data);
+            );
 
         setCurrentMatch([0]);
         setIsLoading(false);

@@ -1,7 +1,7 @@
 import axios from "axios";
 const api = axios.create({
+  // baseURL: "https://betting-app-server.vercel.app/",
   baseURL: "http://localhost:4000",
-  timeout: 3000,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });

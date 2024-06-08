@@ -1,10 +1,11 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../axios-instance";
 import "./Groups.css";
 import { GroupView } from "./GroupView";
 
+import Cookies from "js-cookie";
 export const Groups = () => {
   const [groups, setGroups] = useState();
   const [orderedGroups, setOrderedGroups] = useState();
@@ -14,14 +15,13 @@ export const Groups = () => {
   const [nextGroup, setNextGroup] = useState();
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState("");
-  const [id, setId] = useState();
+
   const today = new Date();
   const todayDateString = today.toISOString().split("T")[0];
   const hour = today.getHours();
   const startDate = "2024-06-14";
-
+  const userId = Cookies.get("userId");
   useEffect(() => {
-    setId(localStorage.getItem("id"));
     const fetchData = async () => {
       if (!groups) {
         try {
@@ -39,24 +39,26 @@ export const Groups = () => {
       }
 
       try {
-        const response = await api.get(`/group/${id}`);
+        const response = await api.get(`/group/${userId}`);
         if (response.status === 200) {
-          const json = [];
-          Object.keys(response.data).map((key) => {
-            json.push({ name: key, teams: response.data[key].split(",") });
-          });
-          // console.log(json);
-          setOrderedGroups(json);
+          if (response.data.length > 0) {
+            const json = [];
+            Object.keys(response.data).map((key) => {
+              json.push({ name: key, teams: response.data[key].split(",") });
+            });
+            // console.log(json);
+            setOrderedGroups(json);
+          }
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        const ok = error;
       }
     };
 
     if (
       todayDateString < startDate ||
       (todayDateString === startDate && hour < 21) ||
-      parseInt(id) === 0
+      parseInt(userId) === 0
     ) {
       setDisabled(false);
     } else {
@@ -122,10 +124,11 @@ export const Groups = () => {
     }
   }, [currentGroup, isLoading, groups]); // Include groups in the dependency array
   const handleSaveClick = async () => {
+    console.log(userId);
     try {
       const response = await api.post("/group/save", {
         groups,
-        id,
+        userId,
       });
       if (response.status < 200 || response.status >= 300) {
         throw new Error("Network response was not ok");
@@ -135,7 +138,7 @@ export const Groups = () => {
       if (error.response) {
         setMessage(error.response.data);
       }
-      alert("There was a problem", error);
+      // alert("There was a problem", error);
     }
   };
   return (

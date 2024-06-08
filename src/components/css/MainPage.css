@@ -1,0 +1,9 @@
+.list-rules {
+  font-size: 1.2em;
+  width: 50%;
+  text-align: justify;
+  list-style-type: decimal-leading-zero;
+}
+li {
+  margin: 3px 0;
+}
