@@ -7,15 +7,15 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
   const [mouse, setMouse] = useState([0, 0]);
   const [dropZone, setDropZone] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (window.innerWidth < 800) {
-      setIsMobile(true);
-    }
-  }, []);
+  // const [isMobile, setIsMobile] = useState(false);
+  // useEffect(() => {
+  //   if (window.innerWidth < 800) {
+  //     setIsMobile(true);
+  //   }
+  // }, []);
   useEffect(() => {
     onOrderChange(group, orderedTeams);
-  }, [dragged]);
+  }, [dragged, group]);
   useEffect(() => {
     if (dragged !== null) {
       const elements = Array.from(document.getElementsByClassName("drop-zone"));
@@ -62,18 +62,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
     else if (start > end) return _reorderListBackward([...l], start, end);
     return l;
   };
-  // const reorderList = (l, start, end) => {
-  //   const newList = [...l];
-  //   if (start > end) {
-  //     const item = newList.splice(start, 1)[0]; // Remove the dragged item from the list
-  //     newList.splice(end, 0, item); // Insert the dragged item at the new position
-  //     //  }else{
-  //     //    const item = newList.splice(start, 1)[0]; // Remove the dragged item from the list
-  //     //    newList.splice(end, 0, item); // Insert the dragged item at the new position
-  //   }
 
-  //   return newList;
-  // };
   const _reorderListForward = (l, start, end) => {
     const temp = l[start];
     for (let i = start; i < end; i++) {

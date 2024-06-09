@@ -143,10 +143,9 @@ input:focus {
   box-shadow: none; /* Remove box shadow */
 }
 body {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   color: var(--white);
-  padding-top: 50px;
   line-height: 1;
   background: var(--primary100) url(/public/background.png) no-repeat bottom
     center fixed;
@@ -213,7 +212,8 @@ h1 {
   flex-direction: column;
 }
 .form-login,
-.form-add-user {
+.form-add-user,
+.form-add-match {
   background-color: var(--primary200);
   width: 50%;
   height: 50%;
@@ -221,6 +221,14 @@ h1 {
   justify-content: space-evenly;
   padding: 0;
   border-radius: 25px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 768px) {
+  .form-login,
+  .form-add-user,
+  .form-add-match {
+    width: 80%;
+  }
 }
 
 .div-date-inputs,

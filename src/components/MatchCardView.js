@@ -1,9 +1,7 @@
 import "./css/CardView.css";
 
-import Cookies from "js-cookie";
 export const MatchCardView = ({ match, admin }) => {
   const calculatePoints = (matchResult, betResult, weight) => {
-    console.log(betResult);
     if (matchResult === betResult) return 5 * weight;
 
     const [matchTeam1, matchTeam2] = matchResult.split(":").map(Number);

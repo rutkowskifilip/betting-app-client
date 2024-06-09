@@ -1,6 +1,6 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import { BetCardView } from "./BetCardView";
 
@@ -22,7 +22,6 @@ export const UnbetMatches = (params) => {
     const hour = today.getHours();
 
     const fetchData = async () => {
-      console.log(userId);
       const response =
         parseInt(userId) === 0
           ? await api.get("/match/noscore")
@@ -47,7 +46,7 @@ export const UnbetMatches = (params) => {
     };
 
     fetchData();
-  }, [saved]);
+  }, [saved, userId]);
 
   const goToNextMatch = () => {
     setCurrentMatch((currentMatch + 1) % matches.length);
@@ -78,7 +77,7 @@ export const UnbetMatches = (params) => {
         saved={saved}
       />
     );
-  }, [currentMatch, matches]);
+  }, [currentMatch, matches, saved]);
 
   // }
   return (

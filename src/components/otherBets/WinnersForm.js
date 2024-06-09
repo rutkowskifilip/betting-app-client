@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../axios-instance";
 
 import Cookies from "js-cookie";
@@ -17,7 +17,6 @@ export const WinnersForm = ({ disabled }) => {
         if (response.status === 200) {
           if (response.data.length > 0) {
             const winners = response.data[0];
-            console.log(winners);
             setFirst(winners.first);
             setSecond(winners.second);
           }
@@ -40,7 +39,7 @@ export const WinnersForm = ({ disabled }) => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
   const handleFirstSelect = (e) => {
     setFirst(e.target.value);
   };

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TopScorerForm } from "./TopScorerForm";
 import { WinnersForm } from "./WinnersForm";
 import "./OtherBets.css";
@@ -26,7 +26,7 @@ export const OtherBets = () => {
     };
 
     fetchData();
-  }, []);
+  }, [hour, todayDateString, userId]);
 
   return (
     <>

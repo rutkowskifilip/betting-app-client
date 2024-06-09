@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axios-instance";
 
@@ -14,7 +14,7 @@ export const Login = () => {
     if (userId) {
       navigate("/");
     }
-  }, [userId]);
+  }, [userId, navigate]);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -37,9 +37,16 @@ export const Login = () => {
       }
 
       setMessage("");
-      Cookies.set("token", response.data.token, { expires: 1, secure: true });
+
+      Cookies.set("token", response.data.token, {
+        expires: 1 / 24,
+        secure: true,
+      });
       // setUserId(response.data.id);
-      Cookies.set("userId", response.data.id, { expires: 1, secure: true });
+      Cookies.set("userId", response.data.id, {
+        expires: 1 / 24,
+        secure: true,
+      });
 
       navigate("/");
     } catch (error) {

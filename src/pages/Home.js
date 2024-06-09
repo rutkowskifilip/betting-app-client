@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AddMatch } from "../components/AddMatch";
 import { AddUser } from "../components/AddUser";
@@ -15,11 +15,10 @@ export const Home = (params) => {
   const userId = Cookies.get("userId");
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(userId);
     if (!userId) {
       navigate("/login");
     }
-  }, []);
+  }, [userId, navigate]);
 
   const [view, setView] = useState(<MainPage />);
   const changeView = (id) => {

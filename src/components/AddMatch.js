@@ -76,7 +76,7 @@ export const AddMatch = (params) => {
   };
   return (
     <div className="flex-center page-add-user">
-      <div className="form-add-user flex-center">
+      <div className="form-add-match flex-center">
         <select name="type" id="type" value={type} onChange={handleTypeChange}>
           <option value="Group A">Group A</option>
           <option value="Group B">Group B</option>

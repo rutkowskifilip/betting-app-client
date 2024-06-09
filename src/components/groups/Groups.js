@@ -1,6 +1,6 @@
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../axios-instance";
 import "./Groups.css";
 import { GroupView } from "./GroupView";
@@ -32,7 +32,6 @@ export const Groups = () => {
           const jsonData = await response.json();
           setGroups(jsonData);
           setIsLoading(false);
-          // console.log(jsonData);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -44,14 +43,17 @@ export const Groups = () => {
           if (response.data.length > 0) {
             const json = [];
             Object.keys(response.data).map((key) => {
-              json.push({ name: key, teams: response.data[key].split(",") });
+              return json.push({
+                name: key,
+                teams: response.data[key].split(","),
+              });
             });
-            // console.log(json);
+
             setOrderedGroups(json);
           }
         }
       } catch (error) {
-        const ok = error;
+        console.error(error);
       }
     };
 
@@ -65,7 +67,7 @@ export const Groups = () => {
       setDisabled(true);
     }
     fetchData();
-  }, []);
+  }, [groups, hour, todayDateString, userId]);
   useEffect(() => {
     setGroups(orderedGroups);
   }, [orderedGroups]);
@@ -124,7 +126,6 @@ export const Groups = () => {
     }
   }, [currentGroup, isLoading, groups]); // Include groups in the dependency array
   const handleSaveClick = async () => {
-    console.log(userId);
     try {
       const response = await api.post("/group/save", {
         groups,

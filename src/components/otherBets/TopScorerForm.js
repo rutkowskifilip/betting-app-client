@@ -40,7 +40,7 @@ export const TopScorerForm = ({ disabled }) => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
   const handleCountrySelect = (e) => {
     setCountry(e.target.value);
     setPosition(null);

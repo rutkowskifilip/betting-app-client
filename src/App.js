@@ -3,8 +3,6 @@ import "./Global.css";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SetPassword } from "./pages/SetPassword";
-import { useEffect, useState } from "react";
-import { createContext, useContext } from "react";
 
 const App = () => {
   return (
