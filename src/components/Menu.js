@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { updateToken } from "../axios-instance";
 import "./css/Menu.css";
 
 export const Menu = ({ onItemClick }) => {
@@ -11,6 +12,7 @@ export const Menu = ({ onItemClick }) => {
   const handleLogoutClick = (e) => {
     Cookies.remove("userId");
     Cookies.remove("token");
+    updateToken("");
     navigate("/login");
   };
   const admin = parseInt(userId) === 0;

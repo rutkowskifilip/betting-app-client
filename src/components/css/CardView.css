@@ -1,11 +1,9 @@
 .card-view {
   width: 26%;
-  min-width: 320px;
   height: 200px;
   background-color: var(--primary200);
   flex-direction: column;
   border-radius: 25px;
-  justify-content: center;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .bet-area {
@@ -14,4 +12,9 @@
 }
 .bet-area > p {
   margin: 0 10px;
+}
+@media (max-width: 768px) {
+  .card-view {
+    width: 80%;
+  }
 }

@@ -44,7 +44,7 @@ export const AllMatches = () => {
         onChange={handleUserChange}
       >
         {parseInt(userId) === 0 ? (
-          <option key={1} value={1}>
+          <option key={0} value={0}>
             admin
           </option>
         ) : (

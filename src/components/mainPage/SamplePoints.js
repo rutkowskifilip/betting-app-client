@@ -1,9 +1,10 @@
-import "./css/MainPage.css";
+import "./MainPage.css";
+import "./SamplePoints.css";
 export const SamplePoints = (params) => {
   return (
     <div className="flex-center container">
-      <h1>Przykładowa pktacja za mecze:</h1>
-      <div className="div-sample-points">
+      <h1>Przykładowa punktacja za mecze:</h1>
+      <div className="div-sample-points flex-center">
         <div className="div-group flex-center">
           <h2>Przykładowy mecz fazy grupowej:</h2>
           <div className="div-match">

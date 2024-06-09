@@ -8,8 +8,8 @@ export const BetCardView = ({
   enabled,
   setSaved,
   saved,
-  message,
   setMessage,
+  score,
 }) => {
   const [scoreTeamOne, setScoreTeamOne] = useState();
   const [scoreTeamTwo, setScoreTeamTwo] = useState();
@@ -21,6 +21,11 @@ export const BetCardView = ({
       setIsLoading(false);
     }
   }, [match]);
+  useEffect(() => {
+    console.log("aaaaaaaa");
+    setScoreTeamOne();
+    setScoreTeamTwo();
+  }, [score]);
   const styles = {
     opacity: enabled ? 1 : 0.5,
     transform: enabled ? "" : "scale(0.8)",
@@ -71,6 +76,7 @@ export const BetCardView = ({
       }
     } else {
       setMessage("It it too late");
+      setSaved(!saved);
     }
   };
   return isLoading ? (

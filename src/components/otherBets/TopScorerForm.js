@@ -1,7 +1,7 @@
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import api from "../../axios-instance";
 
-import Cookies from "js-cookie";
 export const TopScorerForm = ({ disabled }) => {
   const [message, setMessage] = useState("");
   const [country, setCountry] = useState(false);

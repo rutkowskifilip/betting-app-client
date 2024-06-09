@@ -1,13 +1,12 @@
 .table {
   width: 50%;
-  min-width: 350px;
+
   display: flex;
   flex-direction: column;
 }
 .table-element:nth-child(1) {
   background-color: var(--primary300);
 }
-
 .table-element {
   display: flex;
   flex-direction: row;
@@ -34,5 +33,27 @@
 }
 .table-cell {
   width: 20%;
-  /* border: 1px solid white; */
+}
+@media (max-width: 768px) {
+  .table {
+    width: 90%;
+    font-size: 0.8em;
+  }
+  .table-element:nth-child(1) {
+    font-size: 0.6em;
+  }
+  .table-element {
+    height: 24px;
+    border-radius: 12px;
+  }
+  .table-cell:nth-child(1) {
+    width: 24px;
+    font-size: 1em;
+  }
+  .table-cell:nth-child(2) {
+    width: calc(40% - 24px);
+  }
+  .table-cell {
+    width: 20%;
+  }
 }

@@ -1,0 +1,31 @@
+.div-rules {
+  width: 100%;
+  text-align: center;
+  flex-direction: column;
+}
+.list-rules {
+  margin-top: 60px;
+  font-size: 1.2em;
+  width: 50%;
+  margin: 0 20%;
+  text-align: justify;
+  padding: 5px 5%;
+}
+ol {
+  list-style-type: decimal-leading-zero;
+  list-style-position: outside;
+}
+li {
+  margin: 6px 0;
+}
+@media (max-width: 768px) {
+  ol {
+    width: 80%;
+    list-style-position: inside;
+    text-align: left;
+  }
+  .list-rules {
+    width: 100%;
+    margin: 0;
+  }
+}

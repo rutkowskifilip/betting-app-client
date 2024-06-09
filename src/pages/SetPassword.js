@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../axios-instance";
+import api, { updateToken } from "../axios-instance";
 import Cookies from "js-cookie";
 export const SetPassword = () => {
   const [username, setUsername] = useState("");
@@ -41,6 +41,7 @@ export const SetPassword = () => {
         alert(response.data);
         Cookies.remove("userId");
         Cookies.remove("token");
+        updateToken("");
         navigate("/login");
       } catch (error) {
         if (error.response.status === 409) {

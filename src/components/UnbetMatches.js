@@ -14,6 +14,7 @@ export const UnbetMatches = () => {
   const [saved, setSaved] = useState(false);
   const [info, setInfo] = useState("Loading...");
   const [message, setMessage] = useState("");
+  const [score, setScore] = useState(false);
 
   const userId = Cookies.get("userId");
   useEffect(() => {
@@ -49,9 +50,13 @@ export const UnbetMatches = () => {
 
   const goToNextMatch = () => {
     setCurrentMatch((currentMatch + 1) % matches.length);
+    setMessage();
+    setScore(!score);
   };
   const goToPrevMatch = () => {
     setCurrentMatch((currentMatch - 1 + matches.length) % matches.length);
+    setMessage();
+    setScore(!score);
   };
   const styles = {
     paddingTop: "100px",
@@ -66,6 +71,7 @@ export const UnbetMatches = () => {
         match={matches[(currentMatch - 1 + matches.length) % matches.length]}
         enabled={false}
         saved={saved}
+        score={score}
       />
     );
 
@@ -74,6 +80,7 @@ export const UnbetMatches = () => {
         match={matches[(currentMatch + 1) % matches.length]}
         enabled={false}
         saved={saved}
+        score={score}
       />
     );
   }, [currentMatch, matches, saved]);
@@ -101,6 +108,7 @@ export const UnbetMatches = () => {
             saved={saved}
             message={message}
             setMessage={setMessage}
+            score={score}
           />
 
           {window.innerWidth > 1200 ? nextMatch : ""}

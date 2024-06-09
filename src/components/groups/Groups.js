@@ -41,8 +41,9 @@ export const Groups = () => {
 
       try {
         const response = await api.get(`/group/${userId}`);
+
         if (response.status === 200) {
-          if (response.data.length > 0) {
+          if (Object.keys(response.data).length > 0) {
             const json = [];
             Object.keys(response.data).map((key) => {
               return json.push({
@@ -58,7 +59,7 @@ export const Groups = () => {
         console.error(error);
       }
     };
-    console.log(todayDate, startDate);
+
     if (
       todayDate < startDate ||
       (todayDate === startDate && hour < startHour) ||
@@ -69,7 +70,7 @@ export const Groups = () => {
       setDisabled(true);
     }
     fetchData();
-  }, [groups, hour, todayDate, userId, startDate, startHour]);
+  }, [hour, todayDate, userId, startDate, startHour]);
   useEffect(() => {
     setGroups(orderedGroups);
   }, [orderedGroups]);
@@ -79,9 +80,11 @@ export const Groups = () => {
     }
   };
   const goToPrevGroup = () => {
+    console.log(groups);
     if (groups) {
       setCurrentGroup((currentGroup - 1 + groups.length) % groups.length);
     }
+    console.log(groups[currentGroup]);
   };
   const styles = {
     paddingTop: "100px",
@@ -170,6 +173,7 @@ export const Groups = () => {
               onClick={goToPrevGroup}
               className="button-prev"
               style={{ padding: "0" }}
+              sx={{ color: "var(--primary300)" }}
             >
               <NavigateBefore fontSize="large" />
             </IconButton>
@@ -187,6 +191,7 @@ export const Groups = () => {
               onClick={goToNextGroup}
               className="button-next"
               style={{ padding: "0" }}
+              sx={{ color: "var(--primary300)" }}
             >
               <NavigateNext fontSize="large" />
             </IconButton>
@@ -201,14 +206,7 @@ export const Groups = () => {
           </button>
         </div>
       )}
-      <p
-        style={{
-          textAlign: "center",
-          position: "absolute",
-          bottom: "5px",
-          width: "100%",
-        }}
-      >
+      <p className="p-info">
         The prediction of group order is available until {startHour}:00,{" "}
         {startDate}.
       </p>

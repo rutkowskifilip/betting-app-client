@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../axios-instance";
+import api, { updateToken } from "../axios-instance";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -42,6 +42,7 @@ export const Login = () => {
         expires: 1 / 24,
         secure: true,
       });
+      updateToken(response.data.token);
       // setUserId(response.data.id);
       Cookies.set("userId", response.data.id, {
         expires: 1 / 24,

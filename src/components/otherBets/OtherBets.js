@@ -41,14 +41,7 @@ export const OtherBets = () => {
         <TopScorerForm disabled={disabled} />
         <WinnersForm disabled={disabled} />
       </div>
-      <p
-        style={{
-          textAlign: "center",
-          position: "absolute",
-          bottom: "5px",
-          width: "100%",
-        }}
-      >
+      <p className="p-info">
         The predictions of top scorer and winners are available until{" "}
         {startHour}:00, {startDate}.
       </p>

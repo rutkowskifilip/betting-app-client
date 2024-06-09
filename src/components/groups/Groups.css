@@ -2,11 +2,11 @@
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
+  height: 95vh;
 }
 
 .group-view {
   width: 25%;
-  min-width: 320px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -76,4 +76,9 @@
   top: calc(50vh - 100px);
   z-index: 10;
   font-size: 2.5em;
+}
+@media (max-width: 768px) {
+  .group-view {
+    width: 80%;
+  }
 }

@@ -10,8 +10,8 @@ import { Table } from "../components/table/Table";
 import { UnbetMatches } from "../components/UnbetMatches";
 
 import Cookies from "js-cookie";
-import { MainPage } from "../components/MainPage";
-export const Home = (params) => {
+import { MainPage } from "../components/mainPage/MainPage";
+export const Home = () => {
   const userId = Cookies.get("userId");
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Home = (params) => {
     }
   }, [userId, navigate]);
 
-  const [view, setView] = useState(<MainPage />);
+  const [view, setView] = useState(<Groups />);
   const changeView = (id) => {
     if (id === "mainpage") {
       setView(<MainPage />);
