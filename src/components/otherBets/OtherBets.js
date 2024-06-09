@@ -27,7 +27,7 @@ export const OtherBets = () => {
     };
 
     fetchData();
-  }, [hour, todayDate, userId]);
+  }, [hour, todayDate, userId, startDate, startHour]);
 
   return (
     <>

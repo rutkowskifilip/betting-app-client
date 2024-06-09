@@ -9,6 +9,7 @@
     "@mui/material": "^5.15.14",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.0.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "js-cookie": "^3.0.5",
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ajv": "^8.16.0"
   }
 }

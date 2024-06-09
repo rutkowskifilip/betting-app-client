@@ -22,7 +22,6 @@ export const BetCardView = ({
     }
   }, [match]);
   useEffect(() => {
-    console.log("aaaaaaaa");
     setScoreTeamOne();
     setScoreTeamTwo();
   }, [score]);
@@ -31,14 +30,18 @@ export const BetCardView = ({
     transform: enabled ? "" : "scale(0.8)",
   };
   const handleInputOneChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.replace("-", "");
     setScoreTeamOne(value);
-    setButtonEnabled(value >= 0 && scoreTeamTwo >= 0 && scoreTeamTwo !== "");
+    setButtonEnabled(
+      value >= 0 && value !== "" && scoreTeamTwo >= 0 && scoreTeamTwo !== ""
+    );
   };
   const handleInputTwoChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.replace("-", "");
     setScoreTeamTwo(value);
-    setButtonEnabled(value >= 0 && scoreTeamOne >= 0 && scoreTeamOne !== "");
+    setButtonEnabled(
+      value >= 0 && value !== "" && scoreTeamOne >= 0 && scoreTeamOne !== ""
+    );
   };
   const handleButtonClick = async () => {
     const today = new Date();

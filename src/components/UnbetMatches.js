@@ -23,6 +23,7 @@ export const UnbetMatches = () => {
     const hour = today.getHours();
 
     const fetchData = async () => {
+      setIsLoading(true);
       const response =
         parseInt(userId) === 0
           ? await api.get("/match/noscore")
@@ -99,7 +100,7 @@ export const UnbetMatches = () => {
           >
             <NavigateBefore fontSize="large" />
           </IconButton>
-          {window.innerWidth > 1200 ? prevMatch : ""}
+          {window.innerWidth > 1200 && matches.length > 2 ? prevMatch : ""}
 
           <BetCardView
             match={matches[currentMatch]}
@@ -111,7 +112,7 @@ export const UnbetMatches = () => {
             score={score}
           />
 
-          {window.innerWidth > 1200 ? nextMatch : ""}
+          {window.innerWidth > 1200 && matches.length > 2 ? nextMatch : ""}
           <IconButton
             onClick={goToNextMatch}
             className="button-next"

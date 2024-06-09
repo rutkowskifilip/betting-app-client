@@ -20,7 +20,7 @@ export const Home = () => {
     }
   }, [userId, navigate]);
 
-  const [view, setView] = useState(<Groups />);
+  const [view, setView] = useState(<MainPage />);
   const changeView = (id) => {
     if (id === "mainpage") {
       setView(<MainPage />);
