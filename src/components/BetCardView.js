@@ -75,7 +75,7 @@ export const BetCardView = ({
         // alert("There was a problem", error);
       }
     } else {
-      setMessage("It it too late");
+      setMessage("Mecz już się rozpoczął");
       setSaved(!saved);
     }
   };
@@ -127,7 +127,7 @@ export const BetCardView = ({
           onClick={handleButtonClick}
           disabled={!isButtonEnabled}
         >
-          save
+          Zapisz
         </button>
       ) : (
         ""

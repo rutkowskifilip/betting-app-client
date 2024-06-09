@@ -8,12 +8,12 @@ export const Rules = (params) => {
         <ol>
           <li>Wpisowe 100zł/osobę wpłacamy do organizatora w gotówce.</li>
           <li>
-            PRZED mistrzostwami wybieracie miejsca w grupach, mistrza, v-ce
+            PRZED mistrzostwami wybieracie miejsca w grupach, mistrza, w-ce
             mistrza i króla strzelców.
           </li>
           <li>
-            Wyniki wysyłamy najpóźniej przed pierwszym gwizdkiem, później nie ma
-            już takiej możliwości.
+            Wyniki wysyłamy najpóźniej przed planowaną godziną rozpoczęcia
+            spotkania, później nie ma już takiej możliwości.
           </li>
           <li>Punkty zliczają się automatycznie.</li>
           <li>
@@ -24,7 +24,7 @@ export const Rules = (params) => {
             pucharowej, wynik końcowy meczu będzie brany pod uwagę.
           </li>
           <li>
-            Punkty dodatkowe (Ułożenie grupy, mistrz, v-ce, król strzelców) będą
+            Punkty dodatkowe (ułożenie grupy, mistrz, w-ce, król strzelców) będą
             przyznawane każdemu po zakończeniu całego turnieju.
           </li>
           <li>Punktacja będzie przyznawana do 24h po meczu.</li>
@@ -32,7 +32,7 @@ export const Rules = (params) => {
             Dla zwycięzcy przewidziany jest puchar dla najlepszego typera Euro
             2024 oraz zwycięzca zgarnia 70% puli, 2 miejsce 20%, 3 miejsce 10%.
             Przy większej ilości uczestników będzie nagroda pocieszenia dla
-            najlepszego typera grup + król strzelców + mistrz & v-ce mistrz.
+            najlepszego typera grup + król strzelców + mistrz & w-ce mistrz.
           </li>
           <li>
             Reszta rzeczy, czyli jak wpisywać wyniki, jak dogrywki, będzie

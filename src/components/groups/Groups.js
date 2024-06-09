@@ -160,12 +160,14 @@ export const Groups = () => {
   return (
     <>
       {disabled ? (
-        <div className="div-message flex-center">Typing time has elapsed.</div>
+        <div className="div-message flex-center">
+          Czas na typowanie dobiegł końca.
+        </div>
       ) : (
         ""
       )}
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Ładowanie...</p>
       ) : (
         <div className="page-groups">
           <div className="flex-center" style={styles}>
@@ -202,13 +204,12 @@ export const Groups = () => {
             onClick={handleSaveClick}
             disabled={disabled}
           >
-            Save
+            Zapisz
           </button>
         </div>
       )}
       <p className="p-info">
-        The prediction of group order is available until {startHour}:00,{" "}
-        {startDate}.
+        Typowanie grup dostępne jest do {startHour}:00 dnia {startDate}.
       </p>
     </>
   );

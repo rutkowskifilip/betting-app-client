@@ -72,15 +72,14 @@ export const WinnersForm = ({ disabled }) => {
         // alert("There was a problem", error);
       }
     } else {
-      setMessage("It is too late");
+      setMessage("Turniej się już rozpoczął");
     }
   };
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="form-other-bets flex-center" autoComplete="off">
-      <h1>Winners</h1>
-      <p>First:</p>
+      <h1>Mistrz:</h1>
       <select
         name="first"
         id="first"
@@ -90,7 +89,7 @@ export const WinnersForm = ({ disabled }) => {
         disabled={disabled}
       >
         <option disabled value={0} style={{ display: "none" }}>
-          -- select an option --
+          -- wybierz mistrza --
         </option>
         {groups &&
           groups.length > 0 &&
@@ -104,7 +103,7 @@ export const WinnersForm = ({ disabled }) => {
             </optgroup>
           ))}
       </select>
-      <p>Second:</p>
+      <h1>W-ce mistrz:</h1>
       <select
         name="second"
         id="second"
@@ -114,7 +113,7 @@ export const WinnersForm = ({ disabled }) => {
         disabled={disabled}
       >
         <option disabled value={0} style={{ display: "none" }}>
-          -- select an option --
+          -- wybierz w-ce mistrza --
         </option>
         {groups.map((group, index) => (
           <optgroup key={index} label={group.name}>
@@ -134,7 +133,7 @@ export const WinnersForm = ({ disabled }) => {
         onClick={handleSaveWinners}
         disabled={disabled || !first || !second}
       >
-        Save
+        Zapisz
       </button>
     </div>
   );

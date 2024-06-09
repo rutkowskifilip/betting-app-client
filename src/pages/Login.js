@@ -64,7 +64,7 @@ export const Login = () => {
   return (
     <div className="page-login flex-center">
       <div className="form-login flex-center" autoComplete="off">
-        <h1>Welcome!</h1>
+        <h1>Witaj!</h1>
         <div className="div-text-inputs flex-center">
           <input
             type="text"
@@ -72,7 +72,7 @@ export const Login = () => {
             value={username}
             onChange={handleUsernameChange}
             className="text-input"
-            placeholder="username"
+            placeholder="nazwa użytkownika"
           />
 
           <input
@@ -81,12 +81,12 @@ export const Login = () => {
             value={password}
             onChange={handlePasswordChange}
             className="text-input"
-            placeholder="password"
+            placeholder="hasło"
           />
         </div>
         <p style={{ color: "var(--error)" }}>{message}</p>
         <button type="submit" className="button-submit" onClick={handleSubmit}>
-          Login
+          Zaloguj
         </button>
       </div>
     </div>

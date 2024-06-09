@@ -24,42 +24,42 @@ export const Menu = ({ onItemClick }) => {
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Home
+          Strona główna
         </div>
         <div
           id="unbet"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Unbet Matches
+          Typuj
         </div>
         <div
           id="table"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Table
+          Tabela
         </div>
         <div
           id="all"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          All Matches
+          Wszystkie typy
         </div>
         <div
           id="groups"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Groups
+          Grupy
         </div>
         <div
           id="otherBets"
           className="menu-elem flex-center"
           onClick={handleItemClick}
         >
-          Other Bets
+          Bonusowe typy
         </div>
 
         {admin ? (
@@ -69,14 +69,14 @@ export const Menu = ({ onItemClick }) => {
               className="menu-elem flex-center"
               onClick={handleItemClick}
             >
-              Add Match
+              Dodaj mecz
             </div>
             <div
               id="addUser"
               className="menu-elem flex-center"
               onClick={handleItemClick}
             >
-              Add User
+              Dodaj użytkownika
             </div>
           </>
         ) : (
@@ -88,7 +88,7 @@ export const Menu = ({ onItemClick }) => {
         className="menu-elem flex-center logout"
         onClick={handleLogoutClick}
       >
-        Logout
+        Wyloguj
       </div>
     </div>
   );

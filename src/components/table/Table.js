@@ -29,10 +29,10 @@ export const Table = () => {
       <div className="table">
         <div className="table-element">
           <div className="table-cell flex-center"></div>
-          <div className="table-cell flex-center">Name</div>
-          <div className="table-cell flex-center">Points</div>
-          <div className="table-cell flex-center">Perfect Bets</div>
-          <div className="table-cell flex-center">Good Bets</div>
+          <div className="table-cell flex-center"></div>
+          <div className="table-cell flex-center">Punkty</div>
+          <div className="table-cell flex-center">Idealne typy</div>
+          <div className="table-cell flex-center">Dobre typy</div>
         </div>
         {playersTable.map((player, index) => (
           <TableElement key={index} position={index} player={player} />

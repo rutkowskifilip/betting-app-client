@@ -83,15 +83,15 @@ export const TopScorerForm = ({ disabled }) => {
         // alert("There was a problem", error);
       }
     } else {
-      setMessage("It is too late");
+      setMessage("Turniej się już rozpoczął");
     }
   };
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="form-other-bets flex-center" autoComplete="off">
-      <h1>Top scorer</h1>
-      <p>Nationality:</p>
+      <h1>Król Strzelców</h1>
+      <p>Reprezentacja:</p>
       <select
         name="country"
         id="country"
@@ -101,7 +101,7 @@ export const TopScorerForm = ({ disabled }) => {
         disabled={disabled}
       >
         <option disabled value={0} style={{ display: "none" }}>
-          -- select an option --
+          -- wybierz reprezentację --
         </option>
         {Object.keys(players).map((country, index) => (
           <option key={index} value={country}>
@@ -109,7 +109,7 @@ export const TopScorerForm = ({ disabled }) => {
           </option>
         ))}
       </select>
-      <p>Position:</p>
+      <p>Pozycja:</p>
       <select
         name="position"
         id="position"
@@ -119,7 +119,7 @@ export const TopScorerForm = ({ disabled }) => {
         value={position || 0}
       >
         <option disabled value={0} style={{ display: "none" }}>
-          -- select an option --
+          -- wybierz pozycję --
         </option>
         {country &&
           Object.keys(players[country]).map((country, index) => (
@@ -128,7 +128,7 @@ export const TopScorerForm = ({ disabled }) => {
             </option>
           ))}
       </select>
-      <p>Player:</p>
+      <p>Zawodnik:</p>
       <select
         name="player"
         id="player"
@@ -138,7 +138,7 @@ export const TopScorerForm = ({ disabled }) => {
         value={player || 0}
       >
         <option disabled value={0} style={{ display: "none" }}>
-          -- select an option --
+          -- wybierz zawodnika --
         </option>
         {position &&
           players[country][position].map((playerName, index) => (
@@ -155,7 +155,7 @@ export const TopScorerForm = ({ disabled }) => {
         onClick={handleSaveTopScorer}
         disabled={disabled || !player}
       >
-        Save
+        Zapisz
       </button>
     </div>
   );

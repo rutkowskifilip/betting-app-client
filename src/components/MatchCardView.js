@@ -59,8 +59,8 @@ export const MatchCardView = ({ match, admin }) => {
         ""
       ) : (
         <>
-          <p className="bet">Your bet: {bet}</p>
-          <p className="points">Points: {points}</p>
+          <p className="bet">Typ: {bet}</p>
+          <p className="points">Punkty: {points}</p>
         </>
       )}
       <p>{time}:00</p>

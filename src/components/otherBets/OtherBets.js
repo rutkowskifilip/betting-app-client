@@ -32,7 +32,9 @@ export const OtherBets = () => {
   return (
     <>
       {disabled ? (
-        <div className="div-info flex-center">Typing time has elapsed.</div>
+        <div className="div-info flex-center">
+          Czas typowania dobiegł końca.
+        </div>
       ) : (
         ""
       )}
@@ -42,8 +44,8 @@ export const OtherBets = () => {
         <WinnersForm disabled={disabled} />
       </div>
       <p className="p-info">
-        The predictions of top scorer and winners are available until{" "}
-        {startHour}:00, {startDate}.
+        Typowanie króla strzelców, mistrza i w-ce mistrza jest dostępnę do
+        {startHour}:00 dnia {startDate}.
       </p>
     </>
   );

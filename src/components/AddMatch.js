@@ -5,13 +5,37 @@ export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
   const [type, setType] = useState("Group A");
   const [weight, setWeight] = useState(1);
-  const [teamOne, setTeamOne] = useState("Germany");
-  const [teamTwo, setTeamTwo] = useState("Scotland");
-  const [flagOne, setFlagOne] = useState("/flags/Germany.png");
-  const [flagTwo, setFlagTwo] = useState("/flags/Scotland.png");
+  const [teamOne, setTeamOne] = useState("Niemcy");
+  const [teamTwo, setTeamTwo] = useState("Szkocja");
+  const [flagOne, setFlagOne] = useState("/flags/niemcy.png");
+  const [flagTwo, setFlagTwo] = useState("/flags/szkocja.png");
   const [location, setLocation] = useState("Munich");
   const [time, setTime] = useState("21");
   const [date, setDate] = useState("2024-06-14");
+  const cities = [
+    "Berlin",
+    "Monachium",
+    "Dortmund",
+    "Gelsenkirchen",
+    "Stuttgart",
+    "Hamburg",
+    "Düsseldorf",
+    "Kolonia",
+    "Lipsk",
+    "Frankfurt nad Menem",
+  ];
+  const types = [
+    "Grupa A",
+    "Grupa B",
+    "Grupa C",
+    "Grupa D",
+    "Grupa E",
+    "Grupa F",
+    "1/8",
+    "Ćwierćfinał",
+    "Półfinał",
+    "Finał",
+  ];
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,14 +102,11 @@ export const AddMatch = (params) => {
     <div className="flex-center page-add-user">
       <div className="form-add-match flex-center">
         <select name="type" id="type" value={type} onChange={handleTypeChange}>
-          <option value="Group A">Group A</option>
-          <option value="Group B">Group B</option>
-          <option value="Group C">Group C</option>
-          <option value="Group D">Group D</option>
-          <option value="Round of 16">Round of 16</option>
-          <option value="Quarterfinal">Quarter-final</option>
-          <option value="Semifinal">Semi-final</option>
-          <option value="Final">Final</option>
+          {types.map((type, index) => (
+            <option key={index} value={type}>
+              {type}
+            </option>
+          ))}
         </select>
         <div className="div-team-selects flex-center">
           {flagOne ? (
@@ -100,7 +121,7 @@ export const AddMatch = (params) => {
             onChange={handleTeamOneChange}
           >
             {groups.map((group, index) => (
-              <optgroup key={index} label={"Group " + group.name}>
+              <optgroup key={index} label={"Grupa " + group.name}>
                 {group.teams.map((team, indexx) => (
                   <option key={indexx} value={team}>
                     {team}
@@ -116,7 +137,7 @@ export const AddMatch = (params) => {
             onChange={handleTeamTwoChange}
           >
             {groups.map((group, index) => (
-              <optgroup key={index} label={"Group " + group.name}>
+              <optgroup key={index} label={"Grupa " + group.name}>
                 {group.teams.map((team, indexx) => (
                   <option key={indexx} value={team}>
                     {team}
@@ -133,11 +154,11 @@ export const AddMatch = (params) => {
           value={location}
           onChange={handleLocationChange}
         >
-          <option value="Berlin">Berlin</option>
-          <option value="Lipsk">Lipsk</option>
-          <option value="Frankfurt">Frankfurt</option>
-          <option value="Dortmund">Dortmund</option>
-          <option value="Munich">Munich</option>
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
         </select>
         <div className="div-date-inputs flex-center">
           <div style={{ color: "var(--accent)" }}>
@@ -163,7 +184,7 @@ export const AddMatch = (params) => {
         </div>
 
         <button type="submit" className="button-submit" onClick={handleSubmit}>
-          Add Match
+          Dodaj
         </button>
       </div>
     </div>

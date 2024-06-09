@@ -12,7 +12,8 @@ export const SetPassword = () => {
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    const newValue = e.target.value.replace(/ /g, "_");
+    setUsername(newValue);
   };
 
   const handlePasswordChange = (e) => {
@@ -25,33 +26,37 @@ export const SetPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === repPassword) {
-      setMessage("");
-      try {
-        const response = await api.post("/user/setPassword", {
-          auth,
-          username,
-          password,
-        });
+    if (password.length >= 8) {
+      if (password === repPassword) {
+        setMessage("");
+        try {
+          const response = await api.post("/user/setPassword", {
+            auth,
+            username,
+            password,
+          });
 
-        if (response.status < 200 || response.status >= 300) {
-          throw new Error("Network response was not ok");
+          if (response.status < 200 || response.status >= 300) {
+            throw new Error("Network response was not ok");
+          }
+
+          alert(response.data);
+          Cookies.remove("userId");
+          Cookies.remove("token");
+          updateToken("");
+          navigate("/login");
+        } catch (error) {
+          if (error.response.status === 409) {
+            setMessage(error.response.data);
+          }
+
+          console.error("There was a problem with your Axios request:", error);
         }
-
-        alert(response.data);
-        Cookies.remove("userId");
-        Cookies.remove("token");
-        updateToken("");
-        navigate("/login");
-      } catch (error) {
-        if (error.response.status === 409) {
-          setMessage(error.response.data);
-        }
-
-        console.error("There was a problem with your Axios request:", error);
+      } else {
+        setMessage("Wprowadzone hasła nie są takie same");
       }
     } else {
-      setMessage("Passwords are not the same");
+      setMessage("Hasło musi mieć co najmniej 8 znaków");
     }
   };
   return (
@@ -65,7 +70,7 @@ export const SetPassword = () => {
             onChange={handleUsernameChange}
             on
             className="text-input"
-            placeholder="username"
+            placeholder="nazwa użytkownika"
           />
 
           <input
@@ -75,7 +80,7 @@ export const SetPassword = () => {
             onChange={handlePasswordChange}
             on
             className="text-input"
-            placeholder="password"
+            placeholder="hasło"
           />
 
           <input
@@ -84,7 +89,7 @@ export const SetPassword = () => {
             value={repPassword}
             onChange={handleRepPasswordChange}
             className="text-input"
-            placeholder="repeat password"
+            placeholder="powtórz hasło"
           />
           {message && <p className="error-message">{message}</p>}
         </div>
@@ -94,7 +99,7 @@ export const SetPassword = () => {
           onClick={handleSubmit}
           disabled={username === "" || password === "" || repPassword === ""}
         >
-          Save
+          Zapisz
         </button>
       </div>
     </div>

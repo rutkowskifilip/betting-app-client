@@ -98,7 +98,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
         </div>
       )}
       <div className="group-view">
-        <div className="group-name flex-center">Group {group}</div>
+        <div className="group-name flex-center">Grupa {group}</div>
         <div
           className={`group-element drop-zone ${
             dragged === null || dropZone !== 0 ? "hidden" : ""
@@ -131,7 +131,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
     </>
   ) : (
     <div className="group-view disabled">
-      <div className="group-name flex-center">Group {group}</div>
+      <div className="group-name flex-center">Grupa {group}</div>
 
       {orderedTeams.map((team, index) => (
         <div key={index} className="group-element">

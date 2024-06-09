@@ -14,7 +14,7 @@ export const AddUser = (params) => {
     if (re.test(String(email).toLowerCase())) {
       setMessage("");
     } else {
-      setMessage("Invalid email address");
+      setMessage("Błędny adres email");
     }
   };
   const handleSubmit = async (e) => {
@@ -52,7 +52,7 @@ export const AddUser = (params) => {
           {message && <p className="error-message">{message}</p>}
         </div>
         <button type="submit" className="button-submit" onClick={handleSubmit}>
-          Add User
+          Dodaj
         </button>
       </div>
     </div>

@@ -1,8 +1,8 @@
 [
-  { "name": "A", "teams": ["Germany", "Scotland", "Hungary", "Switzerland"] },
-  { "name": "B", "teams": ["Spain", "Croatia", "Italy", "Albania"] },
-  { "name": "C", "teams": ["Slovenia", "Denmark", "Serbia", "England"] },
-  { "name": "D", "teams": ["Netherlands", "France", "Poland", "Austria"] },
-  { "name": "E", "teams": ["Ukraine", "Slovakia", "Belgium", "Romania"] },
-  { "name": "F", "teams": ["Portugal", "Czechia", "Georgia", "Turkiye"] }
+  { "name": "A", "teams": ["Niemcy", "Szkocja", "Węgry", "Szwajcaria"] },
+  { "name": "B", "teams": ["Hiszpania", "Chorwacja", "Włochy", "Albania"] },
+  { "name": "C", "teams": ["Słowenia", "Dania", "Serbia", "Anglia"] },
+  { "name": "D", "teams": ["Holandia", "Francja", "Polska", "Austria"] },
+  { "name": "E", "teams": ["Ukraina", "Słowacja", "Belgia", "Rumunia"] },
+  { "name": "F", "teams": ["Portugalia", "Czechy", "Gruzja", "Turcja"] }
 ]

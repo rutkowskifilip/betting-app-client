@@ -16,8 +16,8 @@
   width: 75%;
 }
 .menu-elem {
-  width: 10%;
-  margin: 0 15px;
+  width: 15%;
+  margin: 0 10px;
 }
 .menu-elem:hover {
   color: var(--accent);
