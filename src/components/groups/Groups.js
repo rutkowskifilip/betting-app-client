@@ -17,9 +17,11 @@ export const Groups = () => {
   const [message, setMessage] = useState("");
 
   const today = new Date();
-  const todayDateString = today.toISOString().split("T")[0];
+  const todayDate = today.toISOString().split("T")[0];
   const hour = today.getHours();
-  const startDate = "2024-06-14";
+  const startDate = process.env.REACT_APP_START_DATE;
+  const startHour = process.env.REACT_APP_START_HOUR;
+
   const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
@@ -56,10 +58,10 @@ export const Groups = () => {
         console.error(error);
       }
     };
-
+    console.log(todayDate, startDate);
     if (
-      todayDateString < startDate ||
-      (todayDateString === startDate && hour < 21) ||
+      todayDate < startDate ||
+      (todayDate === startDate && hour < startHour) ||
       parseInt(userId) === 0
     ) {
       setDisabled(false);
@@ -67,7 +69,7 @@ export const Groups = () => {
       setDisabled(true);
     }
     fetchData();
-  }, [groups, hour, todayDateString, userId]);
+  }, [groups, hour, todayDate, userId, startDate, startHour]);
   useEffect(() => {
     setGroups(orderedGroups);
   }, [orderedGroups]);
@@ -126,20 +128,30 @@ export const Groups = () => {
     }
   }, [currentGroup, isLoading, groups]); // Include groups in the dependency array
   const handleSaveClick = async () => {
-    try {
-      const response = await api.post("/group/save", {
-        groups,
-        userId,
-      });
-      if (response.status < 200 || response.status >= 300) {
-        throw new Error("Network response was not ok");
+    const today = new Date();
+    const todayDate = today.toISOString().split("T")[0];
+    const hour = today.getHours();
+    if (
+      startDate > todayDate ||
+      (startDate === todayDate && startHour > hour)
+    ) {
+      try {
+        const response = await api.post("/group/save", {
+          groups,
+          userId,
+        });
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error("Network response was not ok");
+        }
+        alert(response.data);
+      } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data);
+        }
+        // alert("There was a problem", error);
       }
-      alert(response.data);
-    } catch (error) {
-      if (error.response) {
-        setMessage(error.response.data);
-      }
-      // alert("There was a problem", error);
+    } else {
+      setMessage("It is too late");
     }
   };
   return (
@@ -197,7 +209,8 @@ export const Groups = () => {
           width: "100%",
         }}
       >
-        The prediction of group order is available until 21:00 on June 14, 2024.
+        The prediction of group order is available until {startHour}:00,{" "}
+        {startDate}.
       </p>
     </>
   );

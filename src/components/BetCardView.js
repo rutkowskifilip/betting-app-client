@@ -36,31 +36,41 @@ export const BetCardView = ({
     setButtonEnabled(value >= 0 && scoreTeamOne >= 0 && scoreTeamOne !== "");
   };
   const handleButtonClick = async () => {
-    const matchId = match.id;
-    const score = scoreTeamOne + ":" + scoreTeamTwo;
-    try {
-      const response =
-        parseInt(userId) === 0
-          ? await api.post("/match/score", { matchId, score })
-          : await api.post("/bet/add", {
-              userId,
-              matchId,
-              score,
-            });
-      if (response.status < 200 || response.status >= 300) {
-        throw new Error("Network response was not ok");
-      }
+    const today = new Date();
+    const todayDate = today.toISOString().split("T")[0];
+    const hour = today.getHours();
+    if (
+      match.date > todayDate ||
+      (match.date === todayDate && parseInt(match.time) > hour)
+    ) {
+      const matchId = match.id;
+      const score = scoreTeamOne + ":" + scoreTeamTwo;
+      try {
+        const response =
+          parseInt(userId) === 0
+            ? await api.post("/match/score", { matchId, score })
+            : await api.post("/bet/add", {
+                userId,
+                matchId,
+                score,
+              });
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error("Network response was not ok");
+        }
 
-      alert(response.data);
-      setScoreTeamOne("");
-      setScoreTeamTwo("");
-      setButtonEnabled(false);
-      setSaved(!saved);
-    } catch (error) {
-      if (error.response) {
-        setMessage(error.response.data);
+        alert(response.data);
+        setScoreTeamOne("");
+        setScoreTeamTwo("");
+        setButtonEnabled(false);
+        setSaved(!saved);
+      } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data);
+        }
+        // alert("There was a problem", error);
       }
-      // alert("There was a problem", error);
+    } else {
+      setMessage("It it too late");
     }
   };
   return isLoading ? (

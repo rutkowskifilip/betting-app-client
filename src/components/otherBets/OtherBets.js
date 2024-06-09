@@ -7,16 +7,17 @@ import Cookies from "js-cookie";
 export const OtherBets = () => {
   const [disabled, setDisabled] = useState(false);
   const today = new Date();
-  const todayDateString = today.toISOString().split("T")[0];
+  const todayDate = today.toISOString().split("T")[0];
   const hour = today.getHours();
-  const startDate = "2024-06-14";
 
+  const startDate = process.env.REACT_APP_START_DATE;
+  const startHour = process.env.REACT_APP_START_HOUR;
   const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
       if (
-        todayDateString < startDate ||
-        (todayDateString === startDate && hour < 21) ||
+        todayDate < startDate ||
+        (todayDate === startDate && hour < startHour) ||
         parseInt(userId) === 0
       ) {
         setDisabled(false);
@@ -26,7 +27,7 @@ export const OtherBets = () => {
     };
 
     fetchData();
-  }, [hour, todayDateString, userId]);
+  }, [hour, todayDate, userId]);
 
   return (
     <>
@@ -40,6 +41,17 @@ export const OtherBets = () => {
         <TopScorerForm disabled={disabled} />
         <WinnersForm disabled={disabled} />
       </div>
+      <p
+        style={{
+          textAlign: "center",
+          position: "absolute",
+          bottom: "5px",
+          width: "100%",
+        }}
+      >
+        The predictions of top scorer and winners are available until{" "}
+        {startHour}:00, {startDate}.
+      </p>
     </>
   );
 };

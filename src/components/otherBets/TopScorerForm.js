@@ -10,6 +10,8 @@ export const TopScorerForm = ({ disabled }) => {
 
   const [players, setPlayers] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const startDate = process.env.REACT_APP_START_DATE;
+  const startHour = process.env.REACT_APP_START_HOUR;
 
   const userId = Cookies.get("userId");
   useEffect(() => {
@@ -56,22 +58,32 @@ export const TopScorerForm = ({ disabled }) => {
   };
 
   const handleSaveTopScorer = async () => {
-    try {
-      const response = await api.post("/bet/topscorer", {
-        player,
-        position,
-        country,
-        userId,
-      });
-      if (response.status < 200 || response.status >= 300) {
-        throw new Error("Network response was not ok");
+    const today = new Date();
+    const todayDate = today.toISOString().split("T")[0];
+    const hour = today.getHours();
+    if (
+      startDate > todayDate ||
+      (startDate === todayDate && startHour > hour)
+    ) {
+      try {
+        const response = await api.post("/bet/topscorer", {
+          player,
+          position,
+          country,
+          userId,
+        });
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error("Network response was not ok");
+        }
+        alert(response.data);
+      } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data);
+        }
+        // alert("There was a problem", error);
       }
-      alert(response.data);
-    } catch (error) {
-      if (error.response) {
-        setMessage(error.response.data);
-      }
-      // alert("There was a problem", error);
+    } else {
+      setMessage("It is too late");
     }
   };
   return isLoading ? (

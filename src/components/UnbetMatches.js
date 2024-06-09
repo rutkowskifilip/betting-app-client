@@ -5,7 +5,7 @@ import api from "../axios-instance";
 import { BetCardView } from "./BetCardView";
 
 import Cookies from "js-cookie";
-export const UnbetMatches = (params) => {
+export const UnbetMatches = () => {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [prevMatch, setPrevMatch] = useState();
   const [nextMatch, setNextMatch] = useState();
@@ -18,7 +18,7 @@ export const UnbetMatches = (params) => {
   const userId = Cookies.get("userId");
   useEffect(() => {
     const today = new Date();
-    const todayDateString = today.toISOString().split("T")[0]; // Get today's date as string in "YYYY-MM-DD" format
+    const todayDate = today.toISOString().split("T")[0];
     const hour = today.getHours();
 
     const fetchData = async () => {
@@ -32,9 +32,8 @@ export const UnbetMatches = (params) => {
           : setMatches(
               response.data.filter(
                 (match) =>
-                  match.date > todayDateString ||
-                  (match.date === todayDateString &&
-                    parseInt(match.time) > hour)
+                  match.date > todayDate ||
+                  (match.date === todayDate && parseInt(match.time) > hour)
               )
             );
 
