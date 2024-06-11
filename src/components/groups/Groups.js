@@ -15,7 +15,7 @@ export const Groups = () => {
   const [nextGroup, setNextGroup] = useState();
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState("");
-
+  const [error, setError] = useState(true);
   const today = new Date();
   const todayDate = today.toISOString().split("T")[0];
   const hour = today.getHours();
@@ -25,18 +25,19 @@ export const Groups = () => {
   const userId = Cookies.get("userId");
   useEffect(() => {
     const fetchData = async () => {
-      if (!groups) {
-        try {
-          const response = await fetch("/groups.json");
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const jsonData = await response.json();
-          setGroups(jsonData);
-          setIsLoading(false);
-        } catch (error) {
-          console.error("Error fetching data:", error);
+      setIsLoading(true);
+
+      try {
+        const response = await fetch("/groups.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        const jsonData = await response.json();
+        console.log(jsonData);
+        setGroups(jsonData);
+        // setOrderedGroups(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
 
       try {
@@ -53,11 +54,14 @@ export const Groups = () => {
             });
 
             setOrderedGroups(json);
+            setMessage("Załadowano twoje poprzednie typy");
+            setError(false);
           }
         }
       } catch (error) {
         console.error(error);
       }
+      setIsLoading(false);
     };
 
     if (
@@ -70,7 +74,7 @@ export const Groups = () => {
       setDisabled(true);
     }
     fetchData();
-  }, [hour, todayDate, userId, startDate, startHour]);
+  }, [hour, todayDate, userId]);
   useEffect(() => {
     setGroups(orderedGroups);
   }, [orderedGroups]);
@@ -80,11 +84,9 @@ export const Groups = () => {
     }
   };
   const goToPrevGroup = () => {
-    console.log(groups);
     if (groups) {
       setCurrentGroup((currentGroup - 1 + groups.length) % groups.length);
     }
-    console.log(groups[currentGroup]);
   };
   const styles = {
     paddingTop: "100px",
@@ -92,17 +94,19 @@ export const Groups = () => {
     paddingRight: window.innerWidth > "800px" ? "5%" : 0,
     justifyContent: "space-evenly",
   };
-  const handleOrderChange = (groupName, order) => {
-    const updatedGroups = [...groups];
+  const handleOrderChange = (groupName, order, moved) => {
+    if (moved) {
+      const updatedGroups = [...groups];
 
-    const groupIndex = updatedGroups.findIndex(
-      (group) => group.name === groupName
-    );
+      const groupIndex = updatedGroups.findIndex(
+        (group) => group.name === groupName
+      );
 
-    if (groupIndex !== -1) {
-      updatedGroups[groupIndex].teams = order;
+      if (groupIndex !== -1) {
+        updatedGroups[groupIndex].teams = order;
 
-      setGroups(updatedGroups);
+        setGroups(updatedGroups);
+      }
     }
   };
   useEffect(() => {
@@ -129,7 +133,7 @@ export const Groups = () => {
         />
       );
     }
-  }, [currentGroup, isLoading, groups]); // Include groups in the dependency array
+  }, [currentGroup, isLoading, groups]);
   const handleSaveClick = async () => {
     const today = new Date();
     const todayDate = today.toISOString().split("T")[0];
@@ -150,11 +154,13 @@ export const Groups = () => {
       } catch (error) {
         if (error.response) {
           setMessage(error.response.data);
+          setError(true);
         }
         // alert("There was a problem", error);
       }
     } else {
-      setMessage("It is too late");
+      setMessage("Czas na typowanie dobiegł końca");
+      setError(true);
     }
   };
   return (
@@ -198,7 +204,11 @@ export const Groups = () => {
               <NavigateNext fontSize="large" />
             </IconButton>
           </div>
-          {message && <p className="error-message">{message}</p>}
+          {message && (
+            <p className={error ? "error-message" : "success-message"}>
+              {message}
+            </p>
+          )}
           <button
             className="button-submit"
             onClick={handleSaveClick}

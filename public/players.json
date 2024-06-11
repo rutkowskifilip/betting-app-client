@@ -1,20 +1,772 @@
 {
-  "Polska": {
-    "Bramkarz": ["Nowak", "Kowalski", "Lewandowski"],
-    "Obrońca": ["Kaczmarek", "Mazur", "Jankowski"],
-    "Pomocnikaaaaaaaaa": ["Kwiatkowski", "Walczak", "Stępień"]
-   
+  "Niemcy": {
+    "Bramkarze": ["Oliver Baumann", "Manuel Neuer", "Marc-André ter Stegen"],
+    "Obrońcy": [
+      "Waldemar Anton",
+      "Benjamin Henrichs",
+      "Joshua Kimmich",
+      "Robin Koch",
+      "Maximilian Mittelstädt",
+      "David Raum",
+      "Antonio Rüdiger",
+      "Nico Schlotterbeck",
+      "Jonathan Tah"
+    ],
+    "Pomocnicy": [
+      "Robert Andrich",
+      "Chris Führich",
+      "Pascal Gross",
+      "Ilkay Gündogan",
+      "Toni Kroos",
+      "Jamal Musiala",
+      "Aleksandar Pavlovic",
+      "Leroy Sané",
+      "Florian Wirtz"
+    ],
+    "Napastnicy": [
+      "Maximilian Beier",
+      "Niclas Füllkrug",
+      "Kai Havertz",
+      "Thomas Müller",
+      "Deniz Undav"
+    ]
+  },
+  "Szwajcaria": {
+    "Bramkarze": ["Gregor Kobel", "Yvon Mvogo", "Yann Sommer"],
+    "Obrońcy": [
+      "Manuel Akanji",
+      "Nico Elvedi",
+      "Ricardo Rodríguez",
+      "Fabian Schär",
+      "Leonidas Stergiou",
+      "Silvan Widmer",
+      "Cédric Zesiger"
+    ],
+    "Pomocnicy": [
+      "Michel Aebischer",
+      "Remo Freuler",
+      "Ardon Jashari",
+      "Fabian Rieder",
+      "Xherdan Shaqiri",
+      "Vincent Sierro",
+      "Granit Xhaka",
+      "Denis Zakaria"
+    ],
+    "Napastnicy": [
+      "Zeki Amdouni",
+      "Kwadwo Duah",
+      "Breel Embolo",
+      "Dan Ndoye",
+      "Noah Okafor",
+      "Renato Steffen",
+      "Ruben Vargas",
+      "Steven Zuber"
+    ]
+  },
+  "Szkocja": {
+    "Bramkarze": ["Zander Clark", "Angus Gunn", "Liam Kelly"],
+    "Obrońcy": [
+      "Andy Robertson",
+      "Kieran Tierney",
+      "Jack Hendry",
+      "Ryan Porteous",
+      "Liam Cooper",
+      "Scott McKenna",
+      "Grant Hanley",
+      "Greg Taylor",
+      "Anthony Ralston",
+      "Ross McCrorie"
+    ],
+    "Pomocnicy": [
+      "Callum McGregor",
+      "Ryan Christie",
+      "Billy Gilmour",
+      "John McGinn",
+      "Kenny McLean",
+      "Scott McTominay",
+      "Stuart Armstrong",
+      "Ryan Jack"
+    ],
+    "Napastnicy": [
+      "Che Adams",
+      "Tommy Conway",
+      "James Forrest",
+      "Lewis Morgan",
+      "Lawrence Shankland"
+    ]
+  },
+  "Węgry": {
+    "Bramkarze": ["Péter Gulácsi", "Dénes Dibusz", "Péter Szappanos"],
+    "Obrońcy": [
+      "Botond Balogh",
+      "Endre Botka",
+      "Márton Dárdai",
+      "Attila Fiola",
+      "Milos Kerkez",
+      "Adam Lang",
+      "Willi Orbán",
+      "Zsolt Nagy",
+      "Attila Szalai",
+      "Loïc Négo"
+    ],
+    "Pomocnicy": [
+      "Bendegúz Bolla",
+      "Dániel Gazdag",
+      "Lászlo Kleinheisler",
+      "Mihály Kata",
+      "Ádám Nagy",
+      "András Schäfer",
+      "Dominik Szoboszlai",
+      "Callum Styles"
+    ],
+    "Napastnicy": [
+      "Krisztofer Horváth",
+      "Roland Sallai",
+      "Martin Ádám",
+      "Barnabás Varga",
+      "Kevin Csoboth"
+    ]
+  },
+  "Włochy": {
+    "Bramkarze": ["Gianluigi Donnarumma", "Alex Meret", "Guglielmo Vicario"],
+    "Obrońcy": [
+      "Alessandro Bastoni",
+      "Raoul Bellanova",
+      "Alessandro Buongiorno",
+      "Riccardo Calafiori",
+      "Andrea Cambiaso",
+      "Matteo Darmian",
+      "Giovanni Di Lorenzo",
+      "Federico Dimarco",
+      "Federico Gatti",
+      "Gianluca Mancini"
+    ],
+    "Pomocnicy": [
+      "Nicolò Barella",
+      "Bryan Cristante",
+      "Nicolò Fagioli",
+      "Michael Folorunsho",
+      "Davide Frattesi",
+      "Jorginho",
+      "Lorenzo Pellegrini"
+    ],
+    "Napastnicy": [
+      "Federico Chiesa",
+      "Stephan El Shaarawy",
+      "Giacomo Raspadori",
+      "Mateo Retegui",
+      "Gianluca Scamacca",
+      "Mattia Zaccagni"
+    ]
+  },
+  "Chorwacja": {
+    "Bramkarze": ["Dominik Livaković", "Ivica Ivusić", "Nediljko Labrović"],
+    "Obrońcy": [
+      "Domagoj Vida",
+      "Josip Juranović",
+      "Josko Gvardiol",
+      "Borna Sosa",
+      "Josip Sutalo",
+      "Josip Stanisić",
+      "Martin Erlić",
+      "Marin Pongracić"
+    ],
+    "Pomocnicy": [
+      "Luka Modrić",
+      "Mateo Kovacić",
+      "Marcelo Brozović",
+      "Mario Pasalić",
+      "Nikola Vlasić",
+      "Lovro Majer",
+      "Luka Ivanusec",
+      "Luka Sucić",
+      "Martin Baturina"
+    ],
+    "Napastnicy": [
+      "Ivan Perisić",
+      "Andrej Kramarić",
+      "Bruno Petković",
+      "Marko Pjaca",
+      "Marco Pasalić",
+      "Ante Budimir"
+    ]
   },
   "Hiszpania": {
-    "Bramkarz": ["Garcia", "Rodriguez", "Fernandez"],
-    "Obrońca": ["Ruiz", "Hernandez", "Torres"],
-    "Pomocnik": ["Ramos", "Ortega", "Serrano"],
-    "Napastnik": ["Cruz", "Molina", "Ferrer"]
+    "Bramkarze": ["David Raya", "Álex Remiro", "Unai Simón"],
+    "Obrońcy": [
+      "Dani Carvajal",
+      "Marc Cucurella",
+      "Álex Grimaldo",
+      "Aymeric Laporte",
+      "Nacho",
+      "Jesús Navas",
+      "Robin Le Normand",
+      "Dani Vivian"
+    ],
+    "Pomocnicy": [
+      "Álex Baena",
+      "Fermín López",
+      "Mikel Merino",
+      "Pedri",
+      "Rodri",
+      "Fabián Ruiz",
+      "Martín Zubimendi"
+    ],
+    "Napastnicy": [
+      "Joselu",
+      "Álvaro Morata",
+      "Dani Olmo",
+      "Mikel Oyarzabal",
+      "Ayoze Pérez",
+      "Ferran Torres",
+      "Nico Williams",
+      "Lamine Yamal"
+    ]
+  },
+  "Albania": {
+    "Bramkarze": ["Etrit Berisha", "Thomas Strakosha", "Elhan Kastrati"],
+    "Obrońcy": [
+      "Naser Aliji",
+      "Arlind Ajeti",
+      "Ivan Balliu",
+      "Berat Djimshiti",
+      "Elseid Hysaj",
+      "Ardian Ismajli",
+      "Marash Kumbulla",
+      "Enea Mihaj",
+      "Mario Mitaj"
+    ],
+    "Pomocnicy": [
+      "Amir Abrashi",
+      "Kristjan Asllani",
+      "Nedim Bajrami",
+      "Medon Berisha",
+      "Klaus Gjasula",
+      "Qazim Laçi",
+      "Ernest Muçi",
+      "Ylber Ramadani"
+    ],
+    "Napastnicy": [
+      "Jasir Asani",
+      "Armando Broja",
+      "Mirlind Daku",
+      "Arber Hoxha",
+      "Rey Manaj",
+      "Taulant Seferi"
+    ]
+  },
+  "Słowenia": {
+    "Bramkarze": ["Vid Belec", "Jan Oblak", "Igor Vekič"],
+    "Obrońcy": [
+      "Petar Stojanovic",
+      "Vanja Drkusić",
+      "David Brekalo",
+      "Jaka Bijol",
+      "Jure Balkovec",
+      "Zan Karničnik",
+      "Miha Blazić",
+      "Erik Janža"
+    ],
+    "Pomocnicy": [
+      "Jasmin Kurtić",
+      "Jon Gorenc Stanković",
+      "Tomi Horvat",
+      "Timi Max Elsnik",
+      "Sandi Lovrić",
+      "Adam Gnezda Cerin",
+      "Adrian Zeljković",
+      "Benjamin Verbic",
+      "Josip Ilicić"
+    ],
+    "Napastnicy": [
+      "Nino Zugelj",
+      "Benjamin Šeško",
+      "Jan Mlakar",
+      "Andraz Šporar",
+      "Zan Celar",
+      "Zan Vipotnik"
+    ]
+  },
+  "Dania": {
+    "Bramkarze": ["Kasper Schmeichel", "Frederik Rönnow", "Mads Hermansen"],
+    "Obrońcy": [
+      "Alexander Bah",
+      "Joakim Maehle",
+      "Victor Kristiansen",
+      "Rasmus Kristensen",
+      "Andreas Christensen",
+      "Joachim Andersen",
+      "Simon Kjaer",
+      "Jannik Vestergaard",
+      "Mathias 'Zanka' Jørgensen"
+    ],
+    "Pomocnicy": [
+      "Christian Eriksen",
+      "Pierre-Emile Hojbjerg",
+      "Thomas Delaney",
+      "Mathias Jensen",
+      "Christian Norgaard",
+      "Morten Hjulmand"
+    ],
+    "Napastnicy": [
+      "Rasmus Hojlund",
+      "Kasper Dolberg",
+      "Jonas Wind",
+      "Yussuf Poulsen",
+      "Skov Olsen",
+      "Mikkel Damsgaard",
+      "Jacob Bruun Larsen"
+    ]
   },
   "Anglia": {
-    "Bramkarz": ["Smith", "Johnson", "Williams"],
-    "Obrońca": ["Watson", "Lewis", "Harris"],
-    "Pomocnik": ["Baker", "Phillips", "Mitchell"],
-    "Napastnik": ["West", "Turner", "Parker"]
+    "Bramkarze": ["Jordan Pickford", "Aaron Ramsdale", "Dean Henderson"],
+    "Obrońcy": [
+      "Kyle Walker",
+      "John Stones",
+      "Kieran Trippier",
+      "Joe Gomez",
+      "Luke Shaw",
+      "Marc Guéhi",
+      "Ezri Konsa"
+    ],
+    "Pomocnicy": [
+      "Declan Rice",
+      "Jude Bellingham",
+      "Trent Alexander-Arnold",
+      "Conor Gallagher",
+      "Kobbie Mainoo",
+      "Adam Wharton"
+    ],
+    "Napastnicy": [
+      "Harry Kane",
+      "Phil Foden",
+      "Bukayo Saka",
+      "Ollie Watkins",
+      "Jarrod Bowen",
+      "Ivan Toney",
+      "Eberechi Eze",
+      "Cole Palmer",
+      "Anthony Gordon"
+    ]
+  },
+  "Serbia": {
+    "Bramkarze": [
+      "Vanja Milinkovic Savić",
+      "Dorde Petrović",
+      "Predrag Rajković"
+    ],
+    "Obrońcy": [
+      "Strahinja Pavlović",
+      "Nikola Milenković",
+      "Srdan Babic",
+      "Milos Veljković",
+      "Uros Spajić",
+      "Nemanja Stojić"
+    ],
+    "Pomocnicy": [
+      "Sasa Lukić",
+      "Nemanja Gudelj",
+      "Nemanja Maksimović",
+      "Ivan Ilić",
+      "Srdan Mijailović",
+      "Sergej Milinković-Savić",
+      "Dusan Tadic",
+      "Lazar Samardzić",
+      "Vejko Birmancević",
+      "Filip Kostić",
+      "Andrija Zivković",
+      "Filip Mladenović",
+      "Mijat Gacinović"
+    ],
+    "Napastnicy": [
+      "Aleksandar Mitrović",
+      "Dusan Vlahović",
+      "Luka Jović",
+      "Petar Ratkov"
+    ]
+  },
+  "Polska": {
+    "Bramkarze": ["Marcin Bułka", "Łukasz Skorupski", "Wojciech Szczęsny"],
+    "Obrońcy": [
+      "Jan Bednarek",
+      "Bartosz Bereszyński",
+      "Paweł Dawidowicz",
+      "Jakub Kiwior",
+      "Tymoteusz Puchacz",
+      "Bartosz Salamon",
+      "Sebastian Walukiewicz"
+    ],
+    "Pomocnicy": [
+      "Przemysław Frankowski",
+      "Kamil Grosicki",
+      "Jakub Moder",
+      "Jakub Piotrowski",
+      "Taras Romanczuk",
+      "Bartosz Slisz",
+      "Damian Szymański",
+      "Sebastian Szymański",
+      "Michał Skóraś",
+      "Kacper Urbański",
+      "Nicola Zalewski",
+      "Piotr Zieliński"
+    ],
+    "Napastnicy": [
+      "Adam Buksa",
+      "Robert Lewandowski",
+      "Krzysztof Piątek",
+      "Karol Świderski"
+    ]
+  },
+  "Austria": {
+    "Bramkarze": ["Niklas Hedl", "Heinz Lindner", "Patrick Pentz"],
+    "Obrońcy": [
+      "Flavius Daniliuc",
+      "Kevin Danso",
+      "Philipp Lienhart",
+      "Phillipp Mwene",
+      "Stefan Posch",
+      "Leopold Querfeld",
+      "Gernot Trauner",
+      "Maximilian Wober"
+    ],
+    "Pomocnicy": [
+      "Christoph Baumgartner",
+      "Florian Grillitsch",
+      "Marco Grull",
+      "Alexander Prass",
+      "Florian Kainz",
+      "Konrad Laimer",
+      "Marcel Sabitzer",
+      "Romano Schmid",
+      "Matthias Seidl",
+      "Nicolas Seiwald",
+      "Patrick Wimmer"
+    ],
+    "Napastnicy": [
+      "Marko Arnautović",
+      "Maximilian Entrup",
+      "Michael Gregoritsch",
+      "Andreas Weimann"
+    ]
+  },
+  "Francja": {
+    "Bramkarze": ["Mike Maignan", "Brice Samba", "Alphonse Aréola"],
+    "Obrońcy": [
+      "Dayot Upamecano",
+      "Ibrahima Konaté",
+      "Theo Hernandez",
+      "Ferland Mendy",
+      "Jonathan Clauss",
+      "Benjamin Pavard",
+      "Jules Koundé",
+      "William Saliba"
+    ],
+    "Pomocnicy": [
+      "Warren Zaïre-Emery",
+      "Adrien Rabiot",
+      "Antoine Griezmann",
+      "Aurélien Tchouaméni",
+      "Eduardo Camavinga",
+      "Youssouf Fofana",
+      "N'Golo Kanté"
+    ],
+    "Napastnicy": [
+      "Kylian Mbappé",
+      "Ousmane Dembélé",
+      "Randal Kolo Muani",
+      "Marcus Thuram",
+      "Bradley Barcola",
+      "Kingsley Coman",
+      "Olivier Giroud"
+    ]
+  },
+  "Holandia": {
+    "Bramkarze": ["Bart Verbruggen", "Mark Fleken", "Justin Bijlow"],
+    "Obrońcy": [
+      "Virgil van Dijk",
+      "Nathan Aké",
+      "Daley Blind",
+      "Denzel Dumfries",
+      "Jeremie Frimpong",
+      "Lutsharel Geertruida",
+      "Stefan de Vrij",
+      "Micky van de Ven",
+      "Matthijs de Ligt"
+    ],
+    "Pomocnicy": [
+      "Frenkie de Jong",
+      "Joey Veerman",
+      "Teun Koopmeiners",
+      "Jerdy Schouten",
+      "Georginio Wijnaldum",
+      "Tijjani Reijnders",
+      "Ryan Gravenberch"
+    ],
+    "Napastnicy": [
+      "Memphis Depay",
+      "Cody Gakpo",
+      "Wout Weghorst",
+      "Xavi Simons",
+      "Steven Bergwijn",
+      "Brian Brobbey",
+      "Donyell Malen"
+    ]
+  },
+  "Rumunia": {
+    "Bramkarze": ["Horațiu Moldovan", "Florin Niță", "Ștefan Târnovanu"],
+    "Obrońcy": [
+      "Andrei Rațiu",
+      "Vasile Mogoș",
+      "Andrei Burcă",
+      "Radu Drăgușin",
+      "Adrian Rus",
+      "Ionuț Nedelcearu",
+      "Bogdan Racovițan",
+      "Nicușor Bancu"
+    ],
+    "Pomocnicy": [
+      "Deian Sorescu",
+      "Nicolae Stanciu",
+      "Marius Marin",
+      "Alexandru Cicâldău",
+      "Răzvan Marin",
+      "Darius Olaru",
+      "Adrian Șut",
+      "Dennis Man",
+      "Valentin Mihăilă",
+      "Ianis Hagi",
+      "Florinel Coman"
+    ],
+    "Napastnicy": [
+      "Denis Drăguș",
+      "George Pușcaș",
+      "Denis Alibec",
+      "Daniel Bîrligea"
+    ]
+  },
+  "Belgia": {
+    "Bramkarze": ["Koen Casteels", "Thomas Kaminski", "Matz Sels"],
+    "Obrońcy": [
+      "Timothy Castagne",
+      "Maxim De Cuyper",
+      "Zeno Debast",
+      "Wout Faes",
+      "Thomas Meunier",
+      "Arthur Theate",
+      "Jan Vertonghen"
+    ],
+    "Pomocnicy": [
+      "Kevin De Bruyne",
+      "Axel Witsel",
+      "Yannick Carrasco",
+      "Orel Mangala",
+      "Amadou Onana",
+      "Youri Tielemans",
+      "Arthur Vermeeren",
+      "Aster Vranckx"
+    ],
+    "Napastnicy": [
+      "Johan Bakayoko",
+      "Jeremy Doku",
+      "Charles De Ketelaere",
+      "Romelu Lukaku",
+      "Dodi Lukebakio",
+      "Lois Openda",
+      "Leandro Trossard"
+    ]
+  },
+  "Słowacja": {
+    "Bramkarze": ["Martin Dúbravka", "Marek Rodák", "Henrich Ravas"],
+    "Obrońcy": [
+      "Peter Pekarik",
+      "Milan Škriniar",
+      "Norbert Gyömbér",
+      "Dávid Hancko",
+      "Denis Vavro",
+      "Vernon De Marco",
+      "Adam Obert",
+      "Sebastian Kósa"
+    ],
+    "Pomocnicy": [
+      "Juraj Kucka",
+      "Tomáš Rigo",
+      "Ondrej Duda",
+      "Patrik Hrošovský",
+      "Stanislav Lobotka",
+      "Matúš Bero",
+      "László Bénes"
+    ],
+    "Napastnicy": [
+      "Robert Boženik",
+      "Dávid Ďuriš",
+      "Lukáš Haraslín",
+      "Tomáš Suslov",
+      "Ivan Schranz",
+      "Dávid Strelec",
+      "Lubomír Tupta",
+      "Leo Sauer"
+    ]
+  },
+  "Ukraina": {
+    "Bramkarze": ["Heorhij Buszczan", "Anatolij Trubin", "Andrij Łunin"],
+    "Obrońcy": [
+      "Mykoła Matwijenko",
+      "Juchym Konopla",
+      "Walerij Bondar",
+      "Witalij Mykołenko",
+      "Ilja Zabarnyj",
+      "Ołeksandr Swatok",
+      "Maksym Tałowierow",
+      "Bohdan Mychajliczenko",
+      "Ołeksandr Tymczyk"
+    ],
+    "Pomocnicy": [
+      "Andrij Jarmołenko",
+      "Mykoła Szaparenko",
+      "Wołodymyr Brażko",
+      "Taras Stepanenko",
+      "Ołeksandr Zubkow",
+      "Heorhij Sudakow",
+      "Ołeksandr Zinczenko",
+      "Serhij Sydorczuk",
+      "Rusłan Malinowski",
+      "Wiktor Cyhankow"
+    ],
+    "Napastnicy": [
+      "Artem Dowbyk",
+      "Mychaiło Mudryk",
+      "Roman Jaremczuk",
+      "Władysław Wanat"
+    ]
+  },
+  "Czechy": {
+    "Bramkarze": ["Jindřich Staněk", "Matěj Kovář", "Vítězslav Jaroš"],
+    "Obrońcy": [
+      "Vladimír Coufal",
+      "Tomáš Holeš",
+      "Robin Hranáč",
+      "Ladislav Krejčí",
+      "Martin Vitík",
+      "David Zima",
+      "David Jurásek",
+      "David Douděra",
+      "Tomáš Vlček"
+    ],
+    "Pomocnicy": [
+      "Tomáš Souček",
+      "Antonín Barák",
+      "Michal Sadílek",
+      "Lukáš Provod",
+      "Pavel Šulc",
+      "Ondřej Lingr",
+      "Václav Černý",
+      "Matěj Jurásek",
+      "Lukáš Červ"
+    ],
+    "Napastnicy": [
+      "Patrik Schick",
+      "Tomáš Chorý",
+      "Jan Kuchta",
+      "Adam Hložek",
+      "Mojmír Chytil"
+    ]
+  },
+  "Turcja": {
+    "Bramkarze": ["Altay Bayindir", "Ugurcan Cakir", "Mert Günok"],
+    "Obrońcy": [
+      "Samet Akaydin",
+      "Abdülkerim Bardakci",
+      "Zeki Celik",
+      "Merih Demiral",
+      "Ferdi Kadioglu",
+      "Ahmetcan Kaplan",
+      "Mert Müldür"
+    ],
+    "Pomocnicy": [
+      "Kaan Ayhan",
+      "Hakan Calhanoglu",
+      "Orkun Kökcü",
+      "Salih Özcan",
+      "Okay Yokuslu",
+      "Ismail Yüksek"
+    ],
+    "Napastnicy": [
+      "Yunus Akgün",
+      "Kerem Aktürkoglu",
+      "Baris Alper Yilmaz",
+      "Arda Güler",
+      "Irfan Can Kahveci",
+      "Semih Kilicsoy",
+      "Cenk Tosun",
+      "Yusuf Yazici",
+      "Kenan Yildiz"
+    ]
+  },
+  "Portugalia": {
+    "Bramkarze": ["Diogo Costa", "José Sá", "Rui Patrício"],
+    "Obrońcy": [
+      "António Silva",
+      "Danilo Pereira",
+      "Diogo Dalot",
+      "Gonçalo Inácio",
+      "João Cancelo",
+      "Nélson Semedo",
+      "Nuno Mendes",
+      "Pepe",
+      "Rúben Dias"
+    ],
+    "Pomocnicy": [
+      "Bruno Fernandes",
+      "Bernardo Silva",
+      "João Neves",
+      "Joao Palhinha",
+      "Matheus Nunes",
+      "Rúben Neves",
+      "Vitinha"
+    ],
+    "Napastnicy": [
+      "Cristiano Ronaldo",
+      "Diogo Jota",
+      "Francisco Conceicao",
+      "Goncalo Ramos",
+      "João Félix",
+      "Pedro Neto",
+      "Rafael Leão"
+    ]
+  },
+  "Gruzja": {
+    "Bramkarze": [
+      "Giorgi Mamardaszwili",
+      "Giorgi Lorija",
+      "Luka Gugeszaszwili"
+    ],
+    "Obrońcy": [
+      "Otar Kakabadze",
+      "Giorgi Gwelesiani",
+      "Guram Kaszia",
+      "Jimmy Tabidze",
+      "Lasza Dwali",
+      "Luka Loczoszwili",
+      "Giorgi Goczoleiszwili"
+    ],
+    "Pomocnicy": [
+      "Otar Kiteiszwili",
+      "Nika Kwekweskiri",
+      "Giorgi Czakwetadze",
+      "Sandro Altunaszwili",
+      "Giorgi Koczoraszwili",
+      "Gabriel Sigua",
+      "Anzor Mekwabiszwili"
+    ],
+    "Napastnicy": [
+      "Giorgi Tsitaiszwili",
+      "Lewan Szengelia",
+      "Georges Mikautadze",
+      "Budu Ziwziwadze",
+      "Giorgi Kwilitaja",
+      "Zuriko Dawitaszwili",
+      "Chwicza Kwaracchelia",
+      "Saba Lobżanidze"
+    ]
   }
 }

@@ -44,7 +44,7 @@ export const OtherBets = () => {
         <WinnersForm disabled={disabled} />
       </div>
       <p className="p-info">
-        Typowanie króla strzelców, mistrza i w-ce mistrza jest dostępnę do
+        Typowanie króla strzelców, mistrza i w-ce mistrza jest dostępnę do{" "}
         {startHour}:00 dnia {startDate}.
       </p>
     </>

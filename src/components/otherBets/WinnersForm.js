@@ -4,6 +4,7 @@ import api from "../../axios-instance";
 
 export const WinnersForm = ({ disabled }) => {
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [groups, setGroups] = useState();
   const [first, setFirst] = useState();
@@ -15,11 +16,14 @@ export const WinnersForm = ({ disabled }) => {
     const fetchData = async () => {
       try {
         const response = await api.get(`/bet/winners/${userId}`);
+
         if (response.status === 200) {
           if (response.data.length > 0) {
             const winners = response.data[0];
             setFirst(winners.first);
             setSecond(winners.second);
+            setMessage("Załadowano twoje poprzednie typy");
+            setError(false);
           }
         }
       } catch (error) {
@@ -43,9 +47,11 @@ export const WinnersForm = ({ disabled }) => {
   }, [userId]);
   const handleFirstSelect = (e) => {
     setFirst(e.target.value);
+    setMessage("");
   };
   const handleSecendSelect = (e) => {
     setSecond(e.target.value);
+    setMessage("");
   };
   const handleSaveWinners = async () => {
     const today = new Date();
@@ -68,11 +74,13 @@ export const WinnersForm = ({ disabled }) => {
       } catch (error) {
         if (error.response) {
           setMessage(error.response.data);
+          setError(true);
         }
         // alert("There was a problem", error);
       }
     } else {
       setMessage("Turniej się już rozpoczął");
+      setError(true);
     }
   };
   return isLoading ? (
@@ -125,7 +133,9 @@ export const WinnersForm = ({ disabled }) => {
           </optgroup>
         ))}
       </select>
-      {message && <p className="error-message">{message}</p>}
+      {message && (
+        <p className={error ? "error-message" : "success-message"}>{message}</p>
+      )}
       <button
         type="submit"
         id="button-sace-topscorer"

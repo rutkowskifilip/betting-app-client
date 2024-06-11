@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import "./css/AddMatch.css";
+import { removePolishCharacters } from "../removePolishCharacters";
 export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
   const [type, setType] = useState("Group A");
   const [weight, setWeight] = useState(1);
   const [teamOne, setTeamOne] = useState("Niemcy");
   const [teamTwo, setTeamTwo] = useState("Szkocja");
-  const [flagOne, setFlagOne] = useState("/flags/niemcy.png");
-  const [flagTwo, setFlagTwo] = useState("/flags/szkocja.png");
+  const [flagOne, setFlagOne] = useState("/flags/Niemcy.png");
+  const [flagTwo, setFlagTwo] = useState("/flags/Szkocja.png");
   const [location, setLocation] = useState("Munich");
   const [time, setTime] = useState("21");
   const [date, setDate] = useState("2024-06-14");
@@ -62,11 +63,11 @@ export const AddMatch = (params) => {
   };
   const handleTeamOneChange = (e) => {
     setTeamOne(e.target.value);
-    setFlagOne("/flags/" + e.target.value + ".png");
+    setFlagOne("/flags/" + removePolishCharacters(e.target.value) + ".png");
   };
   const handleTeamTwoChange = (e) => {
     setTeamTwo(e.target.value);
-    setFlagTwo("/flags/" + e.target.value + ".png");
+    setFlagTwo("/flags/" + removePolishCharacters(e.target.value) + ".png");
   };
   const handleLocationChange = (e) => {
     setLocation(e.target.value);

@@ -12,7 +12,8 @@ export const Menu = ({ onItemClick }) => {
   const handleLogoutClick = (e) => {
     Cookies.remove("userId");
     Cookies.remove("token");
-    updateToken("");
+    // updateToken("");
+
     navigate("/login");
   };
   const admin = parseInt(userId) === 0;

@@ -24,6 +24,7 @@ export const UnbetMatches = () => {
 
     const fetchData = async () => {
       setIsLoading(true);
+
       const response =
         parseInt(userId) === 0
           ? await api.get("/match/noscore")
@@ -42,7 +43,7 @@ export const UnbetMatches = () => {
         setCurrentMatch([0]);
         setIsLoading(false);
       } else if (response.status === 201) {
-        setInfo("No unbet matches");
+        setInfo(response.data);
       }
     };
 

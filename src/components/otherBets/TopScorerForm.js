@@ -4,6 +4,7 @@ import api from "../../axios-instance";
 
 export const TopScorerForm = ({ disabled }) => {
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(true);
   const [country, setCountry] = useState(false);
   const [position, setPosition] = useState(false);
   const [player, setPlayer] = useState(false);
@@ -22,6 +23,9 @@ export const TopScorerForm = ({ disabled }) => {
           setCountry(response.data.country);
           setPosition(response.data.position);
           setPlayer(response.data.player);
+
+          setMessage("Załadowano twoje poprzednie typy");
+          setError(false);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -33,6 +37,7 @@ export const TopScorerForm = ({ disabled }) => {
           throw new Error("Network response was not ok");
         }
         const jsonData = await response.json();
+
         setPlayers(jsonData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -47,6 +52,7 @@ export const TopScorerForm = ({ disabled }) => {
     setCountry(e.target.value);
     setPosition(null);
     setPlayer(null);
+    setMessage("");
   };
 
   const handlePositionSelect = (e) => {
@@ -79,11 +85,13 @@ export const TopScorerForm = ({ disabled }) => {
       } catch (error) {
         if (error.response) {
           setMessage(error.response.data);
+          setError(true);
         }
         // alert("There was a problem", error);
       }
     } else {
       setMessage("Turniej się już rozpoczął");
+      setError(true);
     }
   };
   return isLoading ? (
@@ -147,7 +155,9 @@ export const TopScorerForm = ({ disabled }) => {
             </option>
           ))}
       </select>
-      {message && <p className="error-message">{message}</p>}
+      {message && (
+        <p className={error ? "error-message" : "success-message"}>{message}</p>
+      )}
       <button
         type="submit"
         id="button-sace-topscorer"

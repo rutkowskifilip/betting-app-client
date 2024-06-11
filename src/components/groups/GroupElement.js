@@ -1,5 +1,7 @@
+import { removePolishCharacters } from "../../removePolishCharacters";
+
 export const GroupElement = ({ team, index }) => {
-  const flag = "/flags/" + team + ".png";
+  const flag = "/flags/" + removePolishCharacters(team) + ".png";
   return (
     <div className="group-element">
       <div className="flex-center group-position">

@@ -2,9 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 const token = Cookies.get("token");
 const api = axios.create({
-  // baseURL: "https://betting-app-server.vercel.app/",
-  // baseURL: process.env.REACT_APP_API_URL,
-  baseURL: "http://192.168.0.141:4000",
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -13,7 +11,11 @@ const api = axios.create({
 });
 
 export const updateToken = (newToken) => {
-  Cookies.set("token", newToken);
+  Cookies.set("token", newToken, {
+    expires: 1 / 24,
+    secure: true,
+    sameSite: "Strict",
+  });
   api.defaults.headers.Authorization = `Bearer ${newToken}`;
 };
 

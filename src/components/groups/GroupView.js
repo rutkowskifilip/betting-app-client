@@ -7,15 +7,10 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
   const [mouse, setMouse] = useState([0, 0]);
   const [dropZone, setDropZone] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  // const [isMobile, setIsMobile] = useState(false);
-  // useEffect(() => {
-  //   if (window.innerWidth < 800) {
-  //     setIsMobile(true);
-  //   }
-  // }, []);
+  const [moved, setMoved] = useState(false);
   useEffect(() => {
-    onOrderChange(group, orderedTeams);
-  }, [dragged, group]);
+    onOrderChange(group, orderedTeams, moved);
+  }, [dragged]);
   useEffect(() => {
     if (dragged !== null) {
       const elements = Array.from(document.getElementsByClassName("drop-zone"));
@@ -58,6 +53,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
   });
 
   const reorderList = (l, start, end) => {
+    setMoved(true);
     if (start < end) return _reorderListForward([...l], start, end);
     else if (start > end) return _reorderListBackward([...l], start, end);
     return l;

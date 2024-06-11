@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import api from "../axios-instance";
 import "./css/CardView.css";
+import { removePolishCharacters } from "../removePolishCharacters";
 
 export const BetCardView = ({
   match,
@@ -16,6 +17,7 @@ export const BetCardView = ({
   const [isButtonEnabled, setButtonEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const userId = Cookies.get("userId");
+
   useEffect(() => {
     if (match) {
       setIsLoading(false);
@@ -90,7 +92,7 @@ export const BetCardView = ({
       <div className="bet-area flex-center">
         <img
           alt="flag"
-          src={`/flags/${match.teamOne}.png`}
+          src={`/flags/${removePolishCharacters(match.teamOne)}.png`}
           className="img-flag"
         />
         <p>{match.teamOne.slice(0, 3).toUpperCase()}</p>
@@ -116,7 +118,7 @@ export const BetCardView = ({
         <p>{match.teamTwo.slice(0, 3).toUpperCase()}</p>
         <img
           alt="flag"
-          src={`/flags/${match.teamTwo}.png`}
+          src={`/flags/${removePolishCharacters(match.teamTwo)}.png`}
           className="img-flag"
         />
       </div>

@@ -24,8 +24,8 @@ export const Rules = (params) => {
             pucharowej, wynik końcowy meczu będzie brany pod uwagę.
           </li>
           <li>
-            Punkty dodatkowe (ułożenie grupy, mistrz, w-ce, król strzelców) będą
-            przyznawane każdemu po zakończeniu całego turnieju.
+            Punkty dodatkowe (ułożenie grupy, mistrz, w-ce mistrz, król
+            strzelców) będą przyznawane każdemu po zakończeniu całego turnieju.
           </li>
           <li>Punktacja będzie przyznawana do 24h po meczu.</li>
           <li>

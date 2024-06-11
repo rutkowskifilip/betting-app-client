@@ -15,6 +15,7 @@ export const AllMatches = () => {
       try {
         const usersRes = await api.get(`/user/all`);
         const matchesRes = await api.get(`/match/all/${selectedId}`);
+
         if (usersRes.status === 200) {
           setUsers(usersRes.data);
         }

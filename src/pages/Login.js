@@ -17,7 +17,8 @@ export const Login = () => {
   }, [userId, navigate]);
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    const newValue = e.target.value.replace(/ /g, "_");
+    setUsername(newValue);
   };
 
   const handlePasswordChange = (e) => {
@@ -41,12 +42,14 @@ export const Login = () => {
       Cookies.set("token", response.data.token, {
         expires: 1 / 24,
         secure: true,
+        sameSite: "Strict",
       });
       updateToken(response.data.token);
       // setUserId(response.data.id);
       Cookies.set("userId", response.data.id, {
         expires: 1 / 24,
         secure: true,
+        sameSite: "Strict",
       });
 
       navigate("/");
@@ -85,7 +88,13 @@ export const Login = () => {
           />
         </div>
         <p style={{ color: "var(--error)" }}>{message}</p>
-        <button type="submit" className="button-submit" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className="button-submit"
+          onClick={handleSubmit}
+          onTouchStart={handleSubmit}
+          onFocus={handleSubmit}
+        >
           Zaloguj
         </button>
       </div>

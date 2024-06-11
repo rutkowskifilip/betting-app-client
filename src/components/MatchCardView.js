@@ -1,3 +1,4 @@
+import { removePolishCharacters } from "../removePolishCharacters";
 import "./css/CardView.css";
 
 export const MatchCardView = ({ match, admin }) => {
@@ -16,8 +17,8 @@ export const MatchCardView = ({ match, admin }) => {
   const group = match.type;
   const teamOne = match.teamOne;
   const teamTwo = match.teamTwo;
-  const flagOne = "/flags/" + teamOne + ".png";
-  const flagTwo = "/flags/" + teamTwo + ".png";
+  const flagOne = "/flags/" + removePolishCharacters(teamOne) + ".png";
+  const flagTwo = "/flags/" + removePolishCharacters(teamTwo) + ".png";
   const time = match.time;
   const date = match.date;
   const location = match.location;
