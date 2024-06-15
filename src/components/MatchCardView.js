@@ -3,7 +3,7 @@ import "./css/CardView.css";
 
 export const MatchCardView = ({ match, admin }) => {
   const calculatePoints = (matchResult, betResult, weight) => {
-    if (matchResult === betResult) return 5 * weight;
+    if (matchResult === betResult) return 3 * weight;
 
     const [matchTeam1, matchTeam2] = matchResult.split(":").map(Number);
     const [betTeam1, betTeam2] = betResult.split(":").map(Number);
@@ -11,7 +11,7 @@ export const MatchCardView = ({ match, admin }) => {
     return (matchTeam1 === betTeam1 && matchTeam2 === betTeam2) ||
       (matchTeam1 < matchTeam2 && betTeam1 < betTeam2) ||
       (matchTeam1 > matchTeam2 && betTeam1 > betTeam2)
-      ? 3 * weight
+      ? 1 * weight
       : 0;
   };
   const group = match.type;
@@ -32,9 +32,9 @@ export const MatchCardView = ({ match, admin }) => {
     backgroundColor:
       points === 0
         ? "var(--error)"
-        : points === 5 || points === 10
+        : points === 3 || points === 6
         ? "var(--accent)"
-        : points === 6 || points === 3
+        : points === 1 || points === 2
         ? "var(--success)"
         : "",
     borderColor: points > 0 ? "var(--accent)" : "",

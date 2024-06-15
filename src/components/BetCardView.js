@@ -51,7 +51,8 @@ export const BetCardView = ({
     const hour = today.getHours();
     if (
       match.date > todayDate ||
-      (match.date === todayDate && parseInt(match.time) > hour)
+      (match.date === todayDate && parseInt(match.time) > hour) ||
+      parseInt(userId) === 0
     ) {
       const matchId = match.id;
       const score = scoreTeamOne + ":" + scoreTeamTwo;
@@ -85,7 +86,7 @@ export const BetCardView = ({
     }
   };
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Ładowanie...</p>
   ) : (
     <div className="card-view flex-center" style={styles}>
       <p>{match.type}</p>

@@ -23,7 +23,7 @@ export const Table = () => {
   }, []);
 
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Ładowanie...</p>
   ) : (
     <div className="flex-center" style={{ paddingTop: "100px" }}>
       <div className="table">

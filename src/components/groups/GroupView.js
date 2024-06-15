@@ -78,7 +78,7 @@ export const GroupView = ({ teams, group, enabled, onOrderChange }) => {
   };
 
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Ładowanie...</p>
   ) : enabled ? (
     <>
       {dragged !== null && (
