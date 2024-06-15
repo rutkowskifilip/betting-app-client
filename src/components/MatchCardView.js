@@ -25,11 +25,11 @@ export const MatchCardView = ({ match, admin }) => {
   const score = match.score;
   const bet = match.betScore;
   const weight = match.weight;
-  const points = match.points;
+  const points = match.score !== "" ? (match.points ? match.points : 0) : "";
 
   const styles = {
     backgroundColor:
-      points === 0
+      points === 0 && score !== ""
         ? "var(--error)"
         : points === 3 || points === 6
         ? "var(--accent)"
