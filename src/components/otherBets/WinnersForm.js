@@ -84,7 +84,7 @@ export const WinnersForm = ({ disabled }) => {
     }
   };
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Ładowanie...</p>
   ) : (
     <div className="form-other-bets flex-center" autoComplete="off">
       <h1>Mistrz:</h1>

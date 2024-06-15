@@ -12,7 +12,7 @@ export const UnbetMatches = () => {
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [saved, setSaved] = useState(false);
-  const [info, setInfo] = useState("Loading...");
+  const [info, setInfo] = useState("Ładowanie...");
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(false);
 
@@ -30,7 +30,7 @@ export const UnbetMatches = () => {
           ? await api.get("/match/noscore")
           : await api.get(`/match/unbet/${userId}`);
       if (response.status === 200) {
-        userId === 0
+        parseInt(userId) === 0
           ? setMatches(response.data)
           : setMatches(
               response.data.filter(

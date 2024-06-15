@@ -34,7 +34,7 @@ export const AllMatches = () => {
     setSelectedId(e.target.value);
   };
   return isLoading ? (
-    <p>Loading...</p>
+    <p>Ładowanie...</p>
   ) : (
     <div className="flex-center page-all-matches">
       <select

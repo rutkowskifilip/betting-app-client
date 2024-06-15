@@ -31,7 +31,7 @@ export const SamplePoints = (params) => {
           </div>
           <div className="div-match-points">
             <img src="/flags/Polska.png" alt="polska" className="img-flag" />
-            <p className="p-match">3:1</p>
+            <p className="p-match">0:2</p>
             <img src="/flags/Francja.png" alt="francja" className="img-flag" />
             <img src="arrow.png" alt="arrow" className="img-arrow" />
             <p>0 pkt</p>
