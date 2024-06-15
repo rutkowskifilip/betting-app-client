@@ -24,17 +24,16 @@ export const MatchCardView = ({ match, admin }) => {
   const location = match.location;
   const score = match.score;
   const bet = match.betScore;
-  const weight = match.type.charAt(0) === "G" ? 1 : 2;
-  const points =
-    bet !== null && score.length > 2 ? calculatePoints(score, bet, weight) : "";
+  const weight = match.weight;
+  const points = match.points;
 
   const styles = {
     backgroundColor:
       points === 0
         ? "var(--error)"
-        : points === 5 || points === 10
+        : points === 3 || points === 6
         ? "var(--accent)"
-        : points === 6 || points === 3
+        : points === 1 || points === 2
         ? "var(--success)"
         : "",
     borderColor: points > 0 ? "var(--accent)" : "",

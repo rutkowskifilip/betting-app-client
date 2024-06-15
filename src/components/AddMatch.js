@@ -4,7 +4,7 @@ import "./css/AddMatch.css";
 import { removePolishCharacters } from "../removePolishCharacters";
 export const AddMatch = (params) => {
   const [groups, setGroups] = useState([]);
-  const [type, setType] = useState("Group A");
+  const [type, setType] = useState("Grupa A");
   const [weight, setWeight] = useState(1);
   const [teamOne, setTeamOne] = useState("Niemcy");
   const [teamTwo, setTeamTwo] = useState("Szkocja");
