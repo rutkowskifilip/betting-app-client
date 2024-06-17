@@ -32,4 +32,4 @@ This application is made for UEFA Euro 2024 betting game
 * MySQL
 * JWT
 ## Authors
-* @rutkowskifilip
+*[Filip Rutkowski](https://github.com/rutkowskifilip)
