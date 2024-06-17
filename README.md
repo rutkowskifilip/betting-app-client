@@ -23,3 +23,13 @@ This application is made for UEFA Euro 2024 betting game
 ### Manage everything, add matches and users from admin panel
 ![image](https://github.com/rutkowskifilip/betting-app/assets/95183693/1b1e908c-867c-4424-9fb9-bd416ce26d32)
 ![image](https://github.com/rutkowskifilip/betting-app/assets/95183693/73642c8e-2d04-455f-96ac-2e1c0915d4f5)
+
+
+## Tech stack
+* ReactJS
+* NodeJS + Express
+* Axios
+* MySQL
+* JWT
+## Authors
+@rutkowskifilip
