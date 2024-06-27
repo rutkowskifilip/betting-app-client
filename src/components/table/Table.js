@@ -33,6 +33,7 @@ export const Table = () => {
           <div className="table-cell flex-center">Punkty</div>
           <div className="table-cell flex-center">Idealne typy</div>
           <div className="table-cell flex-center">Dobre typy</div>
+          <div className="table-cell flex-center">Dobre grupy</div>
         </div>
         {playersTable.map((player, index) => (
           <TableElement key={index} position={index} player={player} />

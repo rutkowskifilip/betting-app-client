@@ -1,4 +1,13 @@
+import { useState } from "react";
+import { useEffect } from "react";
+
 export const TableElement = ({ position, player }) => {
+  const [goodGroups, setGoodGroups] = useState(0);
+  useEffect(() => {
+    setGoodGroups(
+      (player.points - player.goodBets - player.perfectBets * 3) / 3
+    );
+  }, [player]);
   const styles = {
     backgroundColor:
       position === 0
@@ -24,6 +33,7 @@ export const TableElement = ({ position, player }) => {
       <div className="table-cell  flex-center">{player.points}</div>
       <div className="table-cell  flex-center">{player.perfectBets}</div>
       <div className="table-cell  flex-center">{player.goodBets}</div>
+      <div className="table-cell  flex-center">{goodGroups}</div>
     </div>
   );
 };
