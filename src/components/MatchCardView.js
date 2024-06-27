@@ -29,7 +29,7 @@ export const MatchCardView = ({ match, admin }) => {
 
   const styles = {
     backgroundColor:
-      points === 0 && score !== ""
+      points === 0 && score !== "" && !admin
         ? "var(--error)"
         : points === 3 || points === 6
         ? "var(--accent)"

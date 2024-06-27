@@ -140,7 +140,8 @@ export const Groups = () => {
     const hour = today.getHours();
     if (
       startDate > todayDate ||
-      (startDate === todayDate && startHour > hour)
+      (startDate === todayDate && startHour > hour) ||
+      parseInt(userId) === 0
     ) {
       try {
         const response = await api.post("/group/save", {
